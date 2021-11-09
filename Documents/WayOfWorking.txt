@@ -1,0 +1,18 @@
+Way of working team Ramone
+
+Schedule:
+Standup each day 09:00
+Backlog refinement fridays 13:00
+
+ScM description:
+Facilitate meetings, make sure everybody gets their voice heard.
+Contact with supervisors
+
+Workflow:
+Task described in issue in GitHub-board
+Commit first to your "fork" of the repo
+Then do a pull request to merge your changes to the main repo
+The pull request should be reviewed by the team before merging
+When the change has been merge the issue can be closed in the board
+ 
+
