@@ -10,9 +10,10 @@ Contact with supervisors
 
 Workflow:
 Task described in issue in GitHub-board
+To keep your fork up to date: fetch from upstreams before starting to work on a new change
 Commit first to your "fork" of the repo
 Then do a pull request to merge your changes to the main repo
 The pull request should be reviewed by the team before merging
 When the change has been merge the issue can be closed in the board
- 
+
 
