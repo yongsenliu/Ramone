@@ -2,7 +2,8 @@ Way of working team Ramone
 
 Schedule:
 Standup each day 09:00
-Backlog refinement fridays 13:00
+Demo on fridays 13:00
+Backlog refinement & sprint planning fridays 14:00
 
 ScM description:
 Facilitate meetings, make sure everybody gets their voice heard.
