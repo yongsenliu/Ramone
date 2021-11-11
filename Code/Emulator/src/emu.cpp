@@ -9,11 +9,11 @@ int Emu::getAccPedalPos() {
     //To get data from input handler
 }
 
-int Emu::calRpm(int acc) {
+void Emu::updateRpm(int acc) {
     float rate = (MAX_SPD * ACC_RATE) / 100;
-    
+    // currentTime = 
 }
 
 void Emu::outputRpm(int rpm) {
-
+     
 }
