@@ -1,8 +1,8 @@
-#ifndef TRANS_HPP
-#define TRANS_HPP
+// #ifndef TRANS_HPP
+// #define TRANS_HPP
 
-class Trans {
+// class Trans {
     
-}
+// }
 
-#endif
+// #endif

@@ -1,16 +1,16 @@
 #include <iostream>
 #include "time.h"
 #include "emu.hpp"
-#include "InputHandler.hpp"
+#include "InputHandler/include/InputHandler.hpp"
 
 int main(/*int argc, char ** argv*/){
     clock_t current = clock();
     Emu emu;
     UserInput userInput;
-    inputWindowInit();
+    ::inputWindowInit();
 
     int input;
-
+    std::cout << "START..." <<std::endl;
     while (1)
     {
         input = getch();

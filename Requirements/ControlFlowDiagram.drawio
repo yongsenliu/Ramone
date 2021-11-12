@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="EbYbfpJhEDFFz2nioRpF" name="Page-1">
-        <mxGraphModel dx="678" dy="1346" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="522" dy="1010" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -29,7 +29,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="7" value="current_time &gt; last_tick + update_rate" style="rhombus;" parent="1" vertex="1">
+                <mxCell id="7" value="current_time &gt; last_time + update_rate" style="rhombus;" parent="1" vertex="1">
                     <mxGeometry x="293" y="510" width="265" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8" target="6" edge="1">
@@ -41,13 +41,13 @@
                 <mxCell id="17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="11" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="Calculate RPM&lt;br&gt;&amp;nbsp;changing rate&lt;br&gt;r = (RPMmax * AccRate)/100)" style="html=1;" parent="1" vertex="1">
+                <mxCell id="11" value="Calculate RPM&lt;br&gt;&amp;nbsp;changing rate&lt;br&gt;r = (RPMmax * AccRate) / 100" style="html=1;" parent="1" vertex="1">
                     <mxGeometry x="335.5" y="390" width="180" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="15" target="34" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="last_tick = current_time" style="html=1;" parent="1" vertex="1">
+                <mxCell id="15" value="last_time = current_time" style="html=1;" parent="1" vertex="1">
                     <mxGeometry x="350.5" y="1000" width="150" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="18" target="23" edge="1">
@@ -80,7 +80,7 @@
                 <mxCell id="32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="23" target="15" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="check if over MAX_SPD &lt;br&gt;then = MAX_SPD" style="html=1;" parent="1" vertex="1">
+                <mxCell id="23" value="check if over MAX_SPD*%&lt;br&gt;then = MAX_SPD*%" style="html=1;" parent="1" vertex="1">
                     <mxGeometry x="350" y="870" width="150" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="27" target="30" edge="1">
