@@ -62,3 +62,7 @@ void UserInput::Sensing(int input){
 bool UserInput::IsRunning(){
     return sensorRunning;
 }
+
+int UserInput::getAccPedalPos() {
+    return accPedalPos;
+}
