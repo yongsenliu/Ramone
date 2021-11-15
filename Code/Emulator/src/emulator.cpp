@@ -1,4 +1,5 @@
-#include "emulator.hpp"
+#include <iostream>
+#include "../include/emulator.hpp"
 
 bool Emulator::setgearPosition(gearPosition_t currentGearPos)
 {
@@ -50,4 +51,21 @@ bool Emulator::setEngineRPM(int RPMValue)
         success = false;
     }
     return success;
+}
+    
+ void Emulator::outputRpm(int rpm){
+    float indicator = MAX_SPD / rpm;
+    while (indicator < 1.0) {
+        int barWidth = 70;
+        std::cout << "[";
+        int pos = barWidth * indicator;
+        for (int i = 0; i < barWidth; ++i) {
+            if (i < pos) std::cout << "|";
+            else if (i == pos) std::cout << ">";
+            else std::cout << " ";
+        }
+        std::cout << "] " << int(indicator * 100.0) << " RPM\r";
+        std::cout.flush();
+    }
+    std::cout << std::endl;
 }
