@@ -4,26 +4,38 @@
 #include "InputHandler/include/InputHandler.hpp"
 
 int main(/*int argc, char ** argv*/){
-    clock_t current = clock();
+
     Emu emu;
     UserInput userInput;
-    ::inputWindowInit();
+    inputWindowInit();
 
     int input;
-    std::cout << "START..." <<std::endl;
-    while (1)
+    printw("START...");
+
+    while (true)
     {
-        input = getch();
+        clock_t current = clock();
+        //input = getch();
         userInput.Sensing(input);
+
+        userInput.PrintSensorValues();
 
         int acc = userInput.getAccPedalPos();
 
-        emu.currentTime = current;
-        
-        emu.setAccPedalPos(acc);
-        emu.updateRpm(emu.getAccPedalPos());
-        // emu.outputRpm(emu.getRpm());
+        std::cout << acc << std::endl;
 
-        emu.lastTick = current;
+        emu.currentTime = current;
+        std::cout << current << std::endl;
+        std::cout << emu.currentTime << std::endl;
+
+        //emu.setAccPedalPos(acc);
+
+        //emu.updateRpm(emu.getAccPedalPos());
+
+        //emu.lastTick = current;
+        for(int i =0; i<100000; i++) {
+
+        }
     }
+    return 0;
 }
