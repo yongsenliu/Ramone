@@ -6,11 +6,14 @@
 #include <unistd.h>
 #include <termios.h>
 #include <ncurses.h>
+#include "../../libSocketCan/include/socketcan_cpp.h"
+
+enum GearLever{P,D,N,R};
 
 class UserInput{
     private: 
         int accPedalPos;
-        char gearLever;
+        GearLever gearLeverPos;
         bool sensorRunning;
 
     public:
@@ -19,9 +22,11 @@ class UserInput{
         void Sensing(int input);
         void PrintSensorValues();
         bool IsRunning();
+        GearLever getGearLeverPosition();
 };
 
 void inputWindowInit();
 
+void setupCanFrame(scpp::CanFrame & _canFrame, const int id, const int length);
 
 #endif // INPUTHANDLER_HPP
