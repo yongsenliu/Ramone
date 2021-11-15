@@ -15,6 +15,7 @@ class UserInput{
 
     public:
         UserInput();
+        int getAccPedalPos();
         void Sensing(int input);
         void PrintSensorValues();
         bool IsRunning();
