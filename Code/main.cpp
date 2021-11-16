@@ -1,6 +1,6 @@
 #include <iostream>
 #include "time.h"
-#include "emu.hpp"
+#include "Emulator_debugging/include/emu.hpp"
 #include "InputHandler/include/InputHandler.hpp"
 
 int main(/*int argc, char ** argv*/){
@@ -28,11 +28,11 @@ int main(/*int argc, char ** argv*/){
         std::cout << current << std::endl;
         std::cout << emu.currentTime << std::endl;
 
-        //emu.setAccPedalPos(acc);
+        emu.setAccPedalPos(acc);
 
-        //emu.updateRpm(emu.getAccPedalPos());
+        emu.updateRpm(emu.getAccPedalPos());
 
-        //emu.lastTick = current;
+        emu.lastTick = current;
         for(int i =0; i<100000; i++) {
 
         }
