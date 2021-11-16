@@ -34,7 +34,7 @@ void Emu::updateRpm(int acc) {
         }
         outputRpm(currentEngineRpm);
         lastTick = currentTime;
-    } 
+    }
 }
 
 void Emu::outputRpm(int rpm) {
