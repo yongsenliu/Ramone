@@ -8,16 +8,17 @@ void inputWindowInit(){
 }
 
 UserInput::UserInput(){
-    this->accPedalPos = 0;
-    this->gearLeverPos = N;
-    this->sensorRunning = true;
+    inputWindowInit();
+    if (sockat_can.open("vcan0") != scpp::STATUS_OK){
+        printw("Could not initialize CAN-network");
+        exit(1);
+    }
     printw("Gear lever and acceleration pedal is up and running. Acceleration pedal position is ");
     printw("%d", accPedalPos);
     printw(" %%");
     printw(" and Gearlever is in ");
     printw("%c", gearLeverPos);
     printw(" position. To accelerate use UP-key and deaccelerate use DOWN-key. To change the gear lever press [p/d/n/r]-keys. To turn off press s-key.\n");
-
 }
 
 void UserInput::PrintSensorValues(){
@@ -52,7 +53,7 @@ void UserInput::Sensing(int input){
         this->gearLeverPos = R;
         break;
     case 115:
-        this->sensorRunning = false;
+        this->ignition= Off;
         break;
     default:
         break;
@@ -60,23 +61,25 @@ void UserInput::Sensing(int input){
 }
 
 bool UserInput::IsRunning(){
-    return sensorRunning;
+    if(ignition == On){
+        return true;
+    } else{
+        return false;
+    }
 }
 
 int UserInput::getAccPedalPos() {
     return accPedalPos;
 }
 
+void UserInput::ValuesToCan(){
+    int a[3];
+    a[0] = accPedalPos;
+    a[1] = gearLeverPos;
+    a[2] = ignition;
+    sockat_can.send(a,3);
+ }
+
 GearLever UserInput::getGearLeverPosition(){
     return gearLeverPos;
 }
-
-void setupCanFrame(scpp::CanFrame & _canFrame, int id, int length){
-    _canFrame.id = 100;
-    _canFrame.len = 2;
-    for(int i =0; i <2; i++){
-        _canFrame.data[i] = 0;
-    }
-}
-
-
