@@ -1,8 +1,12 @@
 #ifndef Emulator_H
 #define Emulator_H
-#define MAX_SPD 120
+#define MAX_SPD 5000
+#include <thread>
+#include <mutex>
+
 
 enum gearPosition_t {P,D,N,R};
+enum ignition_t {OFF, ON};
 
 class Emulator{
 
@@ -19,16 +23,23 @@ class Emulator{
         int getEngineRPM();
         bool setEngineRPM(int engineRPM);
         
-	    void outputRpm(int rpm);
+        void updateRpm();
+	    void outputRpm();
         
         void canReader();
 
+        bool ignitionOn();
+
     private:
-        int gaspedalPosition = 0;
-        int engineRPM = 0;
+
+        int gasPedalPosition = 0;
+        int lastAccPos = 0;
+        float engineRPM = 0.0;
         int carWeight = 0;
         int carDrivingTime = 0;
         gearPosition_t gearPosition = N;
+        ignition_t ignition = ON;
+        std::mutex mu;
 };
 
 #endif // Emulator_H
