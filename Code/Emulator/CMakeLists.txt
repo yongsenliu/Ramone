@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 11)
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  # URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
   URL https://github.com/google/googletest/archive/e2239ee6043f73722e7aa812a459f54a28552929.zip
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
@@ -17,7 +16,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(emulator ./main.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan_cpp.cpp)
-add_executable(testEmulator ./src/testEmulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan_cpp.cpp)
+add_executable(testEmulator ./testEmulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan_cpp.cpp)
 
 target_link_libraries(
   emulator
