@@ -1,4 +1,4 @@
-#include "../include/emulator.hpp"
+#include "./include/emulator.hpp"
 #include <gtest/gtest.h>
 
 Emulator myEmulator;
