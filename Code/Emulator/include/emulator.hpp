@@ -27,6 +27,7 @@ class Emulator{
 	    void outputRpm();
         
         void canReader();
+        void canSender();
 
         bool ignitionOn();
 
