@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/Emulator.dir/main.cpp.o CMakeFiles/Emulator.dir/src/emulator.cpp.o CMakeFiles/Emulator.dir/home/eanbarda/projects/groupProject/Ramone/Code/libSocketCan/src/socketcan.cpp.o  -o Emulator  -lpthread 

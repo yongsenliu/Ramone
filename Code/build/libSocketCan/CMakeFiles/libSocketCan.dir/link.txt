@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/libSocketCan.dir/src/socketcan.cpp.o  -o libSocketCan 

@@ -1,3 +1,0 @@
-/home/eanbarda/projects/groupProject/Ramone/Code/Emulator/build/CMakeFiles/rebuild_cache.dir
-/home/eanbarda/projects/groupProject/Ramone/Code/Emulator/build/CMakeFiles/edit_cache.dir
-/home/eanbarda/projects/groupProject/Ramone/Code/Emulator/build/CMakeFiles/Emulator.dir

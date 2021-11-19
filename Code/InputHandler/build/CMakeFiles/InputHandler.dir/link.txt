@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/InputHandler.dir/main.cpp.o CMakeFiles/InputHandler.dir/src/InputHandler.cpp.o CMakeFiles/InputHandler.dir/home/eanbarda/projects/groupProject/Ramone/Code/libSocketCan/src/socketcan.cpp.o  -o InputHandler  -lcurses 
