@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <termios.h>
 #include <ncurses.h>
-#include "../../libSocketCan/include/socketcan_cpp.h"
+#include "../../libSocketCan/include/socketcan.hpp"
 
 enum GearLever{P,D,N,R};
 enum Ignition{Off,On};

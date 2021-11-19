@@ -1,5 +1,5 @@
 #include "include/InputHandler.hpp"
-#include "../libSocketCan/include/socketcan_cpp.h"
+#include "../libSocketCan/include/socketcan.hpp"
 
 int main(/*int argc, char ** argv*/){
     UserInput user;
