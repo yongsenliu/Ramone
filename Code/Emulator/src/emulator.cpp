@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../include/emulator.hpp"
-#include "../../libSocketCan/include/socketcan_cpp.h"
+#include "../../libSocketCan/include/socketcan.hpp"
 #include <thread>
 
 bool Emulator::setgearPosition(gearPosition_t currentGearPos)
