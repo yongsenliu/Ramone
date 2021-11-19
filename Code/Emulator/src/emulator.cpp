@@ -67,18 +67,19 @@ void Emulator::updateRpm() {
     float rate = (MAX_SPD * gasPedalPosition) / 100;
 
     if (engineRPM < rate){
-        engineRPM += rate/10;
+        engineRPM += rate/100;
 
     } else if (engineRPM > rate) {
-        engineRPM -= rate/10;
+        engineRPM -= rate/100;
 
     }
     outputRpm();
 }
 
+
     
- void Emulator::outputRpm()
- {
+void Emulator::outputRpm()
+{
     //const std::lock_guard<std::mutex> lock(mu);
     // float indicator = MAX_SPD / engineRPM;
     // while (indicator < 1.0) {
@@ -104,6 +105,7 @@ void Emulator::canReader(){
         std::cout << "Check whether the vcan0 interface is up!" << std::endl;
         exit (-1);
     }
+
     while (ignitionOn()) {
         scpp::CanFrame fr;
         if (sockat_can.read(fr) == scpp::STATUS_OK) {
@@ -116,6 +118,20 @@ void Emulator::canReader(){
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-
     }
+}
+
+void Emulator::canSender() {
+    scpp::SocketCan sockat_can1;
+    if (sockat_can1.open("vcan1") != scpp::STATUS_OK) {
+        std::cout << "Cannot open vcan1." << std::endl;
+        std::cout << "Check whether the vcan1 interface is up!" << std::endl;
+        exit (-1);
+    }
+    int a[3];
+    const std::lock_guard<std::mutex> lock(mu);
+    a[0] = int(engineRPM)/256;
+    a[1] = int(engineRPM)%256;
+    a[2] = 0;
+    sockat_can1.send(a,3);
 }
