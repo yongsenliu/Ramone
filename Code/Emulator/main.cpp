@@ -10,7 +10,8 @@ int main() {
     std::thread t1(&Emulator::canReader, &myEmulator);
 
     while(myEmulator.ignitionOn()) {
-        myEmulator.updateRpm();
+        //myEmulator.updateRpm();
+        myEmulator.run();
         myEmulator.canSender();
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
         // std::cout << "In main thread accpedalPos: " << myEmulator.getGaspedalPositon() << "\n";
