@@ -159,7 +159,34 @@ float Emulator::aerodynamicForce(){
     return airDensity * dragCoefficient * vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
 }
 
-float Emulator::vehicleAcceleration(const float _tractionForce) {
 
+float Emulator::vehicleAcceleration() {
+    float force = tractionForce();
+    return  (force - roadLoadForce - aerodynamicForce()) / vehicleMass;
 }
 
+void Emulator::setVehicleSpeed() // set vehicle current speed
+{
+    float dV = dT * vehicleAcceleration();
+    vehicleSpeed += dV;
+}
+
+void Emulator::shiftScheduler(){
+    if (engineRPM>= 6500 && gearIndex < 7){
+        gearIndex = gearIndex +1;
+    } else if (engineRPM <= 3500 && gearIndex > 0){
+        gearIndex = gearIndex - 1;
+    }
+}
+
+void Emulator::calculateEngineRPM(){
+    this->engineRPM = 30 * vehicleSpeed * dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
+}
+
+void Emulator::run() {
+    calculateTorque();
+    vehicleAcceleration();
+    setVehicleSpeed();
+    calculateEngineRPM();
+    shiftScheduler();
+}

@@ -35,8 +35,14 @@ class Emulator{
         float tractionForce();
         float aerodynamicForce();
 
-        float vehicleAcceleration(const float &_tractionForce, const float &_aerodynamicForce);
+        float vehicleAcceleration();
+        void setVehicleSpeed();
 
+        void shiftScheduler();
+
+        void calculateEngineRPM();
+
+        void run();
 
     private:
     /*Vehicle constants*/
