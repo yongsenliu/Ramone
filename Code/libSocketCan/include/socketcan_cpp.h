@@ -51,6 +51,7 @@ namespace scpp
         SocketCanStatus write(const CanFrame & msg);
         SocketCanStatus read(CanFrame & msg);
         SocketCanStatus close();
+        void send(int data[], int length);
         const std::string & interfaceName() const;
         ~SocketCan();
     private:

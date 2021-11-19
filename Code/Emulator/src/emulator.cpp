@@ -1,7 +1,6 @@
 #include <iostream>
 #include "../include/emulator.hpp"
 #include "../../libSocketCan/include/socketcan_cpp.h"
-#include <thread>
 
 bool Emulator::setgearPosition(gearPosition_t currentGearPos)
 {
@@ -20,7 +19,7 @@ bool Emulator::setGaspedalPostion(int gaspdedalPos)
 
     if (gaspdedalPos >= 0 && gaspdedalPos <= 100)
     {
-        gaspedalPosition = gaspdedalPos;
+        gasPedalPosition = gaspdedalPos;
         success = true;
     }
     else
@@ -32,12 +31,20 @@ bool Emulator::setGaspedalPostion(int gaspdedalPos)
 }
 int Emulator::getGaspedalPositon()
 {
-    return gaspedalPosition;
+    return gasPedalPosition;
 }
 
 int Emulator::getEngineRPM()
 {
     return engineRPM;
+}
+
+bool Emulator::ignitionOn() {
+    if (ignition == ON) {
+        return true;
+    }else {
+        return false;
+    }
 }
 
 bool Emulator::setEngineRPM(int RPMValue)
@@ -54,26 +61,41 @@ bool Emulator::setEngineRPM(int RPMValue)
     }
     return success;
 }
-    
- void Emulator::outputRpm(int rpm)
- {
-    float indicator = MAX_SPD / rpm;
-    while (indicator < 1.0) {
-        int barWidth = 70;
-        std::cout << "[";
-        int pos = barWidth * indicator;
-        for (int i = 0; i < barWidth; ++i) {
-            if (i < pos) std::cout << "|";
-            else if (i == pos) std::cout << ">";
-            else std::cout << " ";
-        }
-        std::cout << "] " << int(indicator * 100.0) << " RPM\r";
-        std::cout.flush();
+
+void Emulator::updateRpm() {
+    const std::lock_guard<std::mutex> lock(mu);
+    float rate = (MAX_SPD * gasPedalPosition) / 100;
+
+    if (engineRPM < rate){
+        engineRPM += rate/10;
+
+    } else if (engineRPM > rate) {
+        engineRPM -= rate/10;
+
     }
-    std::cout << std::endl;
+    outputRpm();
 }
 
-// void Emulator::canReader(int *accPedalPos, gearPosition_t *gearPosition){
+    
+ void Emulator::outputRpm()
+ {
+    //const std::lock_guard<std::mutex> lock(mu);
+    // float indicator = MAX_SPD / engineRPM;
+    // while (indicator < 1.0) {
+    //     int barWidth = 70;
+    //     std::cout << "[";
+    //     int pos = barWidth * indicator;
+    //     for (int i = 0; i < barWidth; ++i) {
+    //         if (i < pos) std::cout << "|";
+    //         else if (i == pos) std::cout << ">";
+    //         else std::cout << " ";
+    //     }
+    //     std::cout << "] " << int(indicator * 100.0) << " RPM\r";
+    //     std::cout.flush();
+    // }
+    std::cout << engineRPM << std::endl;
+}
+
 void Emulator::canReader(){
     scpp::SocketCan sockat_can;
     
@@ -82,13 +104,15 @@ void Emulator::canReader(){
         std::cout << "Check whether the vcan0 interface is up!" << std::endl;
         exit (-1);
     }
-    while (true) {
+    while (ignitionOn()) {
         scpp::CanFrame fr;
         if (sockat_can.read(fr) == scpp::STATUS_OK) {
-            printf("len %d byte, id: %d, data: %02x %02x \n", fr.len, fr.id, 
-                fr.data[0], fr.data[1]);
-            this->gaspedalPosition = int(fr.data[0]);
-            this->gearPosition = gearPosition_t(fr.data[1]);         
+            printf("len %d byte, id: %d, data: %02x %02x %02x \n", fr.len, fr.id, 
+                fr.data[0], fr.data[1], fr.data[2]);
+            const std::lock_guard<std::mutex> lock(mu);
+            this->gasPedalPosition = int(fr.data[0]);
+            this->gearPosition = gearPosition_t(fr.data[1]);   
+            this->ignition = ignition_t(fr.data[2]);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
