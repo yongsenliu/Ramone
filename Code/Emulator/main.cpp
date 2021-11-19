@@ -11,7 +11,8 @@ int main() {
 
     while(myEmulator.ignitionOn()) {
         myEmulator.updateRpm();
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        myEmulator.canSender();
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
         // std::cout << "In main thread accpedalPos: " << myEmulator.getGaspedalPositon() << "\n";
         // std::cout << "In main thread gearPosition: " << myEmulator.getGearPosition() << "\n";
 
