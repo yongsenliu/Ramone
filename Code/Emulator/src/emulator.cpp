@@ -135,3 +135,30 @@ void Emulator::canSender() {
     a[2] = 0;
     sockat_can1.send(a,3);
 }
+
+void Emulator::calculateTorque(){
+    float maxEngineTorque;
+    if (engineRPM < 2020){
+        maxEngineTorque = 0.0755 *engineRPM + 228,5;
+    }else if(engineRPM > 2020 && engineRPM < 2990){
+        maxEngineTorque = 0.0557 *engineRPM + 272,5;
+    }else if(maxEngineTorque > 2990 && engineRPM < 3500){
+        maxEngineTorque = 0.0216 *engineRPM + 374,4;
+    }else if(engineRPM > 3500 && engineRPM < 5000){
+        maxEngineTorque =  450;
+    }else if(engineRPM > 6500){
+        maxEngineTorque = (-0.0553 * engineRPM) + 726,5;
+    }
+    engineTorque = maxEngineTorque * gasPedalPosition / 100;
+}
+float Emulator::tractionForce(){
+    return engineTorque * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
+}
+float Emulator::aerodynamicForce(){
+    return airDensity * dragCoefficient * vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
+}
+
+float Emulator::vehicleAcceleration(const float _tractionForce) {
+
+}
+

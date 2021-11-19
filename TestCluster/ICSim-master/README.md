@@ -1,3 +1,6 @@
+Copy with modification of below ICSim project for testing Ramone's Engine-Transmission-Emulator project.
+Not for other usage, and we do respect the original owner!
+
 Instrument Cluster Simulator for SocketCAN
 ------------------------------------------
 
