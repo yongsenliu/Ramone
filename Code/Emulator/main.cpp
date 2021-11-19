@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "../libSocketCan/include/socketcan_cpp.h"
+#include "../libSocketCan/include/socketcan.hpp"
 #include "./include/emulator.hpp"
 
 int main() {

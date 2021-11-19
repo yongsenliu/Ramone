@@ -1,9 +1,4 @@
-#include "../include/socketcan_cpp.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-//#ifdef HAVE_SOCKETCAN_HEADERS
+#include "../include/socketcan.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,6 +10,12 @@
 #include <iostream>
 
 #include <linux/can/raw.h>
+
+//#ifdef HAVE_SOCKETCAN_HEADERS
+
+
+
+
 /* CAN DLC to real data length conversion helpers */
 
 static const unsigned char dlc2len[] = {0, 1, 2, 3, 4, 5, 6, 7,
