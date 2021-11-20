@@ -1,5 +1,5 @@
 #include <iostream>
-#include "emu.hpp"
+#include "../include/emu.hpp"
 
 #define ACC_RATE 8.0
 #define MAX_SPD 120

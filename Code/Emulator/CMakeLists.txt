@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(BuildEmulatorBinaries)
+cmake_minimum_required(VERSION 3.5.1)
+project(Ramone)
 
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -15,11 +15,11 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(emulator ./main.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan_cpp.cpp)
-add_executable(testEmulator ./testEmulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan_cpp.cpp)
+add_executable(Emulator ./Emulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan.cpp)
+add_executable(testEmulator ./testEmulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan.cpp)
 
 target_link_libraries(
-  emulator
+  Emulator
   pthread
 )
 
