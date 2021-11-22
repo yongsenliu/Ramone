@@ -11,6 +11,10 @@ enum ignition_t {OFF, ON};
 class Emulator{
 
     public:
+
+        //Simulation constants:
+        const float dT = 0.01; // sample time [s] 
+
         Emulator()= default;
         Emulator(const int carWeight);
 
@@ -63,6 +67,7 @@ class Emulator{
         //const float roadSlope = 0; // road slope angle [rad]
         //const float roadLoadCoe = 0.011; // road load coefficient
         const float roadLoadForce = 205.892; // total road load force (resistance due to slope, friction) [Nm]
+        const float engineBreakForce = 1000.0;
         //Engine constants:
         //const int NmaxTq = 3500; // engine speed for maximum torque [rpm]
         //const int NmaxPwr = 6500; // engine speed for maximum power [rpm]
@@ -78,13 +83,12 @@ class Emulator{
         const float finalDriveRatio = 3.31; // final drive ratio (differential)
         const float drivelineEfficiency = 0.85; // driveline efficiency
 
-        //Simulation constants:
-        const float dT = 0.05; // sample time [s] 
+        
 
     /*Variables*/
         int gasPedalPosition = 0;
         int lastAccPos = 0;
-        float engineRPM = 0.0;
+        float engineRPM = 0;
         int carDrivingTime = 0;
         gearPosition_t gearPosition = N;
         ignition_t ignition = ON;
@@ -93,6 +97,7 @@ class Emulator{
         int gearIndex = 0;
         float engineTorque = 0;
         float vehicleSpeed = 0;
+        float vehicleAcc = 0;
 };
 
 #endif // Emulator_H

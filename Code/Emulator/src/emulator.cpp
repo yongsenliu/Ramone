@@ -81,20 +81,6 @@ void Emulator::updateRpm() {
     
 void Emulator::outputRpm()
 {
-    //const std::lock_guard<std::mutex> lock(mu);
-    // float indicator = MAX_SPD / engineRPM;
-    // while (indicator < 1.0) {
-    //     int barWidth = 70;
-    //     std::cout << "[";
-    //     int pos = barWidth * indicator;
-    //     for (int i = 0; i < barWidth; ++i) {
-    //         if (i < pos) std::cout << "|";
-    //         else if (i == pos) std::cout << ">";
-    //         else std::cout << " ";
-    //     }
-    //     std::cout << "] " << int(indicator * 100.0) << " RPM\r";
-    //     std::cout.flush();
-    // }
     std::cout << engineRPM << std::endl;
 }
 
@@ -117,7 +103,7 @@ void Emulator::canReader(){
             this->gearPosition = gearPosition_t(fr.data[1]);   
             this->ignition = ignition_t(fr.data[2]);
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
     }
 }
@@ -139,15 +125,16 @@ void Emulator::canSender() {
 
 void Emulator::calculateTorque(){
     float maxEngineTorque;
-    if (engineRPM < 2020){
+    //if (engineRPM > 1000 && engineRPM <= 2020){
+    if (engineRPM <= 2020){
         maxEngineTorque = 0.0755 *engineRPM + 228,5;
-    }else if(engineRPM > 2020 && engineRPM < 2990){
+    }else if(engineRPM > 2020 && engineRPM <= 2990){
         maxEngineTorque = 0.0557 *engineRPM + 272,5;
-    }else if(maxEngineTorque > 2990 && engineRPM < 3500){
+    }else if(engineRPM > 2990 && engineRPM <= 3500){
         maxEngineTorque = 0.0216 *engineRPM + 374,4;
-    }else if(engineRPM > 3500 && engineRPM < 5000){
+    }else if(engineRPM > 3500 && engineRPM <= 5000){
         maxEngineTorque =  450;
-    }else if(engineRPM > 6500){
+    }else if(engineRPM > 5000) {//6500){
         maxEngineTorque = (-0.0553 * engineRPM) + 726,5;
     }
     engineTorque = maxEngineTorque * gasPedalPosition / 100;
@@ -162,25 +149,39 @@ float Emulator::aerodynamicForce(){
 
 float Emulator::vehicleAcceleration() {
     float force = tractionForce();
-    return  (force - roadLoadForce - aerodynamicForce()) / vehicleMass;
+    float brkForce = 0;
+    if (gasPedalPosition == 0) {
+        brkForce = engineBreakForce;
+    }
+
+    float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
+    if (vehicleSpeed <= 0) {
+        sumForce = force;
+    }
+    if ((gasPedalPosition == 0) && ((engineRPM < 1050) && (engineRPM > 950))) {
+        sumForce = 0;
+    }
+
+    return  sumForce / vehicleMass;
 }
 
 void Emulator::setVehicleSpeed() // set vehicle current speed
 {
     float dV = dT * vehicleAcceleration();
+    vehicleAcc = vehicleAcceleration();
     vehicleSpeed += dV;
 }
 
 void Emulator::shiftScheduler(){
-    if (engineRPM>= 6500 && gearIndex < 7){
+    if (engineRPM >= 5000 && gearIndex < 7){
         gearIndex = gearIndex +1;
-    } else if (engineRPM <= 3500 && gearIndex > 0){
+    } else if (engineRPM <= 3000 && gearIndex > 0){
         gearIndex = gearIndex - 1;
     }
 }
 
 void Emulator::calculateEngineRPM(){
-    this->engineRPM = 30 * vehicleSpeed * dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
+    this->engineRPM = 30 * vehicleSpeed / dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
 }
 
 void Emulator::run() {
@@ -189,4 +190,5 @@ void Emulator::run() {
     setVehicleSpeed();
     calculateEngineRPM();
     shiftScheduler();
+    std::cout << "acc%: " << gasPedalPosition << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
 }
