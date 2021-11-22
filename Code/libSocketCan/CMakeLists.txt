@@ -4,5 +4,6 @@ project(Ramone)
 
 
 add_executable(libSocketCan ./src/socketcan.cpp)
+#add_library(libSocketCan STATIC ./src/socketcan.cpp)
 target_include_directories(libSocketCan PUBLIC)
 

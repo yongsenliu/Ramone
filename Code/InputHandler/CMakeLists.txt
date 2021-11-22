@@ -11,5 +11,6 @@ target_include_directories(InputHandler PUBLIC
 				./libSocketCan/include
 				./InputHandler/include)
 target_link_libraries(InputHandler PUBLIC curses)
+#add link to the libraries for targets(while linking)
 
 
