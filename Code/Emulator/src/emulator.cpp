@@ -180,7 +180,7 @@ void Emulator::shiftScheduler(){
 }
 
 void Emulator::calculateEngineRPM(){
-    this->engineRPM = 30 * vehicleSpeed * dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
+    this->engineRPM = 30 * vehicleSpeed / dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
 }
 
 void Emulator::run() {
