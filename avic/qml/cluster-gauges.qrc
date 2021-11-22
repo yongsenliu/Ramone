@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cluster-gauges.qml</file>
+        <file>DashboardGaugeStyle.qml</file>
+        <file>IconGaugeStyle.qml</file>
+        <file>TachometerStyle.qml</file>
+        <file>TurnIndicator.qml</file>
+        <file>ValueSource.qml</file>
+	<file>images/</file>
+    </qresource>
+</RCC>
