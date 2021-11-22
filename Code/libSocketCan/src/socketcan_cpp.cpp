@@ -177,7 +177,7 @@ namespace scpp
         if (write_sc_status != scpp::STATUS_OK){
             std::cout << "something went wrong on socket write, error code :" << int32_t(write_sc_status) << "\n\r";
         }else{
-            std::cout << "Message was written to the socket \n\r";
+            //std::cout << "Message was written to the socket \n\r";
         }    
     }
     
