@@ -140,7 +140,12 @@ void Emulator::calculateTorque(){
     engineTorque = maxEngineTorque * gasPedalPosition / 100;
 }
 float Emulator::tractionForce(){
-    return engineTorque * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
+    if(gearPosition == D || gearPosition == R){
+        return engineTorque * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
+    } else {
+        return 0;
+    }
+    
 }
 float Emulator::aerodynamicForce(){
     return airDensity * dragCoefficient * vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
@@ -173,15 +178,48 @@ void Emulator::setVehicleSpeed() // set vehicle current speed
 }
 
 void Emulator::shiftScheduler(){
-    if (engineRPM >= 5000 && gearIndex < 7){
-        gearIndex = gearIndex +1;
-    } else if (engineRPM <= 3000 && gearIndex > 0){
-        gearIndex = gearIndex - 1;
+    if(gearPosition == D){
+        if (engineRPM >= 5000 && gearIndex < 7){
+            gearIndex = gearIndex +1;
+        } else if (engineRPM <= 3000 && gearIndex > 0){
+            gearIndex = gearIndex - 1;
+        }
     }
 }
 
+float Emulator::engineRPMChangeInNeutral(){
+    float engineRPMChange;
+    if(gasPedalPosition == 0){
+        engineRPMChange = - 8 * neutralRatio;
+    } else{
+        if (engineRPM <= 2020){
+            engineRPMChange = 20.4 * neutralRatio * gasPedalPosition / 100;
+        }else if(engineRPM > 2020 && engineRPM <= 2990){
+            engineRPMChange = 23.8 * neutralRatio * gasPedalPosition / 100;
+        }else if(engineRPM > 2990 && engineRPM <= 3500){
+            engineRPMChange = 26.1 * neutralRatio * gasPedalPosition / 100;
+        }else if(engineRPM > 3500 && engineRPM <= 5000){
+            engineRPMChange = 26.4 * neutralRatio * gasPedalPosition / 100;
+        }else if(engineRPM > 5000) {//6500){
+            engineRPMChange = 24.1 * neutralRatio * gasPedalPosition / 100;
+        }
+    }
+    return engineRPMChange;
+}
+
+
+
 void Emulator::calculateEngineRPM(){
-    this->engineRPM = 30 * vehicleSpeed / dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
+    if(gearPosition == D || gearPosition == R){
+        this->engineRPM = 30 * vehicleSpeed / dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
+    } else {
+        this->engineRPM += engineRPMChangeInNeutral();
+    }
+    if(engineRPM < engineIdlingRPM - 75){
+        this->engineRPM = engineIdlingRPM;
+    }else if(engineRPM > engineMaxRPM){
+        this->engineRPM = engineMaxRPM - 750;
+    }
 }
 
 void Emulator::run() {

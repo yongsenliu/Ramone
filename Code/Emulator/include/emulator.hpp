@@ -45,6 +45,7 @@ class Emulator{
         void shiftScheduler();
 
         void calculateEngineRPM();
+        float engineRPMChangeInNeutral();
 
         void run();
 
@@ -79,16 +80,20 @@ class Emulator{
         const int gearMin = 1; // lowest gear
         const int gearMax = 8; // highest gear
         const float gearRatios[8] = {4.71, 3.14, 2.11, 1.67, 1.29, 1.00, 0.84, 0.67}; // gearbox gear ratios
+        const float neutralRatio = 4.5;
         
         const float finalDriveRatio = 3.31; // final drive ratio (differential)
         const float drivelineEfficiency = 0.85; // driveline efficiency
+
+        const float engineIdlingRPM = 1000;
+        const float engineMaxRPM = 7000;
 
         
 
     /*Variables*/
         int gasPedalPosition = 0;
         int lastAccPos = 0;
-        float engineRPM = 0;
+        float engineRPM = engineIdlingRPM;
         int carDrivingTime = 0;
         gearPosition_t gearPosition = N;
         ignition_t ignition = ON;
