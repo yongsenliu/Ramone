@@ -1,0 +1,5 @@
+-I/home/clevin1/CodeWriting/git/Ramone/Code/avic
+-I/home/clevin1/CodeWriting/git/Ramone/Code/avic/build
+-o
+/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp
+/home/clevin1/CodeWriting/git/Ramone/Code/avic/include/your_stuff.h
