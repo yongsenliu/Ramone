@@ -1,0 +1,3 @@
+/home/eanbarda/projects/groupProject/Ramone/Code/libSocketCan/build/CMakeFiles/rebuild_cache.dir
+/home/eanbarda/projects/groupProject/Ramone/Code/libSocketCan/build/CMakeFiles/edit_cache.dir
+/home/eanbarda/projects/groupProject/Ramone/Code/libSocketCan/build/CMakeFiles/SocketCan.dir
