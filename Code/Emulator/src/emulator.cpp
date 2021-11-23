@@ -123,6 +123,8 @@ void Emulator::canSender() {
     sockat_can1.send(a,3);
 }
 
+
+
 void Emulator::calculateTorque(){
     float maxEngineTorque;
     //if (engineRPM > 1000 && engineRPM <= 2020){
