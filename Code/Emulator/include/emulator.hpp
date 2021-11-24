@@ -3,10 +3,13 @@
 #define MAX_SPD 7000 //FIXME: move to constants
 #include <thread>
 #include <mutex>
+#include <cstdlib>
 
 
 enum gearPosition_t {P,D,N,R};
 enum ignition_t {OFF, ON};
+
+float absolute(float value);
 
 class Emulator{
 
@@ -35,7 +38,7 @@ class Emulator{
 
         bool ignitionOn();
 
-        void calculateTorque();
+        float calculateTorque();
         float tractionForce();
         float aerodynamicForce();
 
@@ -46,6 +49,7 @@ class Emulator{
 
         void calculateEngineRPM();
         float engineRPMChangeInNeutral();
+        
 
         void run();
 
@@ -100,7 +104,6 @@ class Emulator{
         std::mutex mu;
 
         int gearIndex = 0;
-        float engineTorque = 0;
         float vehicleSpeed = 0;
         float vehicleAcc = 0;
 };
