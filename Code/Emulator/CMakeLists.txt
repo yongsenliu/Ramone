@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 #add_executable(Emulator 
 #		main.cpp
-#		./src/emulator.cpp
+#		./src/EmulatorSource.cpp
 #		../libSocketCan/src/socketcan.cpp
 #		)
 #
@@ -31,8 +31,8 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(Emulator ./Emulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan.cpp)
-add_executable(testEmulator ./testEmulator.cpp ./src/emulator.cpp ../libSocketCan/src/socketcan.cpp)
+add_executable(Emulator ./Emulator.cpp ./src/EmulatorSource.cpp ../libSocketCan/src/socketcan.cpp)
+add_executable(testEmulator ./testEmulator.cpp ./src/EmulatorSource.cpp ../libSocketCan/src/socketcan.cpp)
 target_link_libraries(
   Emulator
   pthread
