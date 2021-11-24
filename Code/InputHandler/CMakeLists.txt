@@ -4,7 +4,7 @@ project(Ramone)
 
 add_executable(InputHandler 
 		InputHandler.cpp
-		./src/InputHandler.cpp
+		./src/InputHandlerSource.cpp
 		../libSocketCan/src/socketcan.cpp)
 
 target_include_directories(InputHandler PUBLIC 
