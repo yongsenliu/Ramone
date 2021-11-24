@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/clevin1/CodeWriting/git/Ramone/Code/avic
+CMAKE_SOURCE_DIR = /home/sam/Desktop/repos/fork/Ramone/Code/avic
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/clevin1/CodeWriting/git/Ramone/Code/avic/build
+CMAKE_BINARY_DIR = /home/sam/Desktop/repos/fork/Ramone/Code/avic/build
 
 # Utility rule file for avic_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/clevin1/CodeWriting/git/Ramone/Code/avic/build
 include CMakeFiles/avic_autogen.dir/progress.make
 
 CMakeFiles/avic_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target avic"
-	/usr/bin/cmake -E cmake_autogen /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target avic"
+	/usr/bin/cmake -E cmake_autogen /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/AutogenInfo.json ""
 
 avic_autogen: CMakeFiles/avic_autogen
 avic_autogen: CMakeFiles/avic_autogen.dir/build.make
@@ -72,6 +72,6 @@ CMakeFiles/avic_autogen.dir/clean:
 .PHONY : CMakeFiles/avic_autogen.dir/clean
 
 CMakeFiles/avic_autogen.dir/depend:
-	cd /home/clevin1/CodeWriting/git/Ramone/Code/avic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/clevin1/CodeWriting/git/Ramone/Code/avic /home/clevin1/CodeWriting/git/Ramone/Code/avic /home/clevin1/CodeWriting/git/Ramone/Code/avic/build /home/clevin1/CodeWriting/git/Ramone/Code/avic/build /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sam/Desktop/repos/fork/Ramone/Code/avic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sam/Desktop/repos/fork/Ramone/Code/avic /home/sam/Desktop/repos/fork/Ramone/Code/avic /home/sam/Desktop/repos/fork/Ramone/Code/avic/build /home/sam/Desktop/repos/fork/Ramone/Code/avic/build /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/avic_autogen.dir/depend
 

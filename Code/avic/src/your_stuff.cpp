@@ -40,8 +40,9 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
     case CAN::MSG::ENGINE_ID: {
         const struct CAN::MSG::_engine *d = reinterpret_cast<const struct CAN::MSG::_engine * >((_frame->data));
         this->InstrumentCluster.ignite(d->RUN);
-        this->InstrumentCluster.setRPM(d->RPM);
-        this->InstrumentCluster.setSpeed(d->SPD);
+         this->InstrumentCluster.setRPM(d->RPM);
+         this->InstrumentCluster.setSpeed(d->SPD);
+        std::cout << "RPM recieved by cluster" << d->RPM << std::endl;
 
     }
         break;

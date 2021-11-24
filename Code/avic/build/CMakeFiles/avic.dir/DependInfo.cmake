@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/main.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/main.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/qrc_images.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/src/can_opener.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/src/can_opener.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/src/cluster_updater.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/src/cluster_updater.cpp.o"
-  "/home/clevin1/CodeWriting/git/Ramone/Code/avic/src/your_stuff.cpp" "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/src/your_stuff.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/main.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/main.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/qrc_images.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/src/can_opener.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/src/can_opener.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/src/cluster_updater.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/src/cluster_updater.cpp.o"
+  "/home/sam/Desktop/repos/fork/Ramone/Code/avic/src/your_stuff.cpp" "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/src/your_stuff.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

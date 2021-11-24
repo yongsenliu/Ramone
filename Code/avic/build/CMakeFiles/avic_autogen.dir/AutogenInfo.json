@@ -1,14 +1,14 @@
 {
-	"BUILD_DIR" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen",
-	"CMAKE_BINARY_DIR" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic",
+	"BUILD_DIR" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen",
+	"CMAKE_BINARY_DIR" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic",
 	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
-	"CMAKE_SOURCE_DIR" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic",
+	"CMAKE_SOURCE_DIR" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic",
 	"HEADERS" : [],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"QT_CORE_LIB",
@@ -30,17 +30,17 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/include",
-		"/home/clevin1/CodeWriting/git/Ramone/lib/libcanio/include",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/include_directories",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/(",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/include",
+		"/home/sam/Desktop/repos/fork/Ramone/lib/libcanio/include",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/include_directories",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/(",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui/5.12.8",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui/5.12.8/QtGui",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore/5.12.8",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore/5.12.8/QtCore",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/)",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/)",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
 		"/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++",
@@ -70,35 +70,35 @@
 		"-c",
 		"/usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/include/your_stuff.h"
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/include/your_stuff.h"
 	],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/ParseCache.txt",
+	"PARALLEL" : 2,
+	"PARSE_CACHE_FILE" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
 	"QT_UIC_EXECUTABLE" : "/usr/lib/qt5/bin/uic",
 	"QT_VERSION_MAJOR" : 5,
-	"SETTINGS_FILE" : "/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/clevin1/CodeWriting/git/Ramone/Code/avic/main.cpp", "MU" ],
+		[ "/home/sam/Desktop/repos/fork/Ramone/Code/avic/main.cpp", "MU" ],
 		[
-			"/home/clevin1/CodeWriting/git/Ramone/Code/avic/src/can_opener.cpp",
+			"/home/sam/Desktop/repos/fork/Ramone/Code/avic/src/can_opener.cpp",
 			"MU"
 		],
 		[
-			"/home/clevin1/CodeWriting/git/Ramone/Code/avic/src/cluster_updater.cpp",
+			"/home/sam/Desktop/repos/fork/Ramone/Code/avic/src/cluster_updater.cpp",
 			"MU"
 		],
 		[
-			"/home/clevin1/CodeWriting/git/Ramone/Code/avic/src/your_stuff.cpp",
+			"/home/sam/Desktop/repos/fork/Ramone/Code/avic/src/your_stuff.cpp",
 			"MU"
 		]
 	],
@@ -106,9 +106,9 @@
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
 	[
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp",
-		"/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp"
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp",
+		"/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

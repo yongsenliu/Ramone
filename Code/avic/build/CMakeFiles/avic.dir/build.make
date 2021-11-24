@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/clevin1/CodeWriting/git/Ramone/Code/avic
+CMAKE_SOURCE_DIR = /home/sam/Desktop/repos/fork/Ramone/Code/avic
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/clevin1/CodeWriting/git/Ramone/Code/avic/build
+CMAKE_BINARY_DIR = /home/sam/Desktop/repos/fork/Ramone/Code/avic/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/avic.dir/depend.make
@@ -66,8 +66,8 @@ qrc_cluster-gauges.cpp: ../qml/ValueSource.qml
 qrc_cluster-gauges.cpp: ../qml/images
 qrc_cluster-gauges.cpp: qml/cluster-gauges.qrc.depends
 qrc_cluster-gauges.cpp: ../qml/cluster-gauges.qrc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating qrc_cluster-gauges.cpp"
-	/usr/lib/qt5/bin/rcc --name cluster-gauges --output /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp /home/clevin1/CodeWriting/git/Ramone/Code/avic/qml/cluster-gauges.qrc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating qrc_cluster-gauges.cpp"
+	/usr/lib/qt5/bin/rcc --name cluster-gauges --output /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp /home/sam/Desktop/repos/fork/Ramone/Code/avic/qml/cluster-gauges.qrc
 
 qrc_images.cpp: ../qml/images/agl_title_793x211.png
 qrc_images.cpp: ../qml/images/Utility_Logo_Grey-01.svg
@@ -103,116 +103,116 @@ qrc_images.cpp: ../qml/images/logod.png
 qrc_images.cpp: ../qml/images/AGL_Icons_Seatbelt_yellow.svg
 qrc_images.cpp: qml/images/images.qrc.depends
 qrc_images.cpp: ../qml/images/images.qrc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating qrc_images.cpp"
-	/usr/lib/qt5/bin/rcc --name images --output /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp /home/clevin1/CodeWriting/git/Ramone/Code/avic/qml/images/images.qrc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating qrc_images.cpp"
+	/usr/lib/qt5/bin/rcc --name images --output /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp /home/sam/Desktop/repos/fork/Ramone/Code/avic/qml/images/images.qrc
 
 include/moc_your_stuff.cpp: ../include/your_stuff.h
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating include/moc_your_stuff.cpp"
-	cd /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include && /usr/lib/qt5/bin/moc @/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp_parameters
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating include/moc_your_stuff.cpp"
+	cd /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include && /usr/lib/qt5/bin/moc @/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp_parameters
 
 CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o: avic_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp
 
 CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp > CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp > CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp -o CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/avic_autogen/mocs_compilation.cpp -o CMakeFiles/avic.dir/avic_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/avic.dir/main.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/avic.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/main.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/avic.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/main.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/main.cpp
 
 CMakeFiles/avic.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/main.cpp > CMakeFiles/avic.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/main.cpp > CMakeFiles/avic.dir/main.cpp.i
 
 CMakeFiles/avic.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/main.cpp -o CMakeFiles/avic.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/main.cpp -o CMakeFiles/avic.dir/main.cpp.s
 
 CMakeFiles/avic.dir/src/can_opener.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/src/can_opener.cpp.o: ../src/can_opener.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/avic.dir/src/can_opener.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/src/can_opener.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/can_opener.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/avic.dir/src/can_opener.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/src/can_opener.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/can_opener.cpp
 
 CMakeFiles/avic.dir/src/can_opener.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/src/can_opener.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/can_opener.cpp > CMakeFiles/avic.dir/src/can_opener.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/can_opener.cpp > CMakeFiles/avic.dir/src/can_opener.cpp.i
 
 CMakeFiles/avic.dir/src/can_opener.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/src/can_opener.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/can_opener.cpp -o CMakeFiles/avic.dir/src/can_opener.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/can_opener.cpp -o CMakeFiles/avic.dir/src/can_opener.cpp.s
 
 CMakeFiles/avic.dir/src/cluster_updater.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/src/cluster_updater.cpp.o: ../src/cluster_updater.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/avic.dir/src/cluster_updater.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/src/cluster_updater.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/cluster_updater.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/avic.dir/src/cluster_updater.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/src/cluster_updater.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/cluster_updater.cpp
 
 CMakeFiles/avic.dir/src/cluster_updater.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/src/cluster_updater.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/cluster_updater.cpp > CMakeFiles/avic.dir/src/cluster_updater.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/cluster_updater.cpp > CMakeFiles/avic.dir/src/cluster_updater.cpp.i
 
 CMakeFiles/avic.dir/src/cluster_updater.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/src/cluster_updater.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/cluster_updater.cpp -o CMakeFiles/avic.dir/src/cluster_updater.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/cluster_updater.cpp -o CMakeFiles/avic.dir/src/cluster_updater.cpp.s
 
 CMakeFiles/avic.dir/src/your_stuff.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/src/your_stuff.cpp.o: ../src/your_stuff.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/avic.dir/src/your_stuff.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/src/your_stuff.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/your_stuff.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/avic.dir/src/your_stuff.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/src/your_stuff.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/your_stuff.cpp
 
 CMakeFiles/avic.dir/src/your_stuff.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/src/your_stuff.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/your_stuff.cpp > CMakeFiles/avic.dir/src/your_stuff.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/your_stuff.cpp > CMakeFiles/avic.dir/src/your_stuff.cpp.i
 
 CMakeFiles/avic.dir/src/your_stuff.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/src/your_stuff.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/src/your_stuff.cpp -o CMakeFiles/avic.dir/src/your_stuff.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/src/your_stuff.cpp -o CMakeFiles/avic.dir/src/your_stuff.cpp.s
 
 CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o: qrc_cluster-gauges.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp
 
 CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp > CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp > CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.i
 
 CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_cluster-gauges.cpp -o CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_cluster-gauges.cpp -o CMakeFiles/avic.dir/qrc_cluster-gauges.cpp.s
 
 CMakeFiles/avic.dir/qrc_images.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/qrc_images.cpp.o: qrc_images.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/avic.dir/qrc_images.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/qrc_images.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/avic.dir/qrc_images.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/qrc_images.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp
 
 CMakeFiles/avic.dir/qrc_images.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/qrc_images.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp > CMakeFiles/avic.dir/qrc_images.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp > CMakeFiles/avic.dir/qrc_images.cpp.i
 
 CMakeFiles/avic.dir/qrc_images.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/qrc_images.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/qrc_images.cpp -o CMakeFiles/avic.dir/qrc_images.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/qrc_images.cpp -o CMakeFiles/avic.dir/qrc_images.cpp.s
 
 CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o: CMakeFiles/avic.dir/flags.make
 CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o: include/moc_your_stuff.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o -c /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/avic.dir/include/moc_your_stuff.cpp.o -c /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp
 
 CMakeFiles/avic.dir/include/moc_your_stuff.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/avic.dir/include/moc_your_stuff.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp > CMakeFiles/avic.dir/include/moc_your_stuff.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp > CMakeFiles/avic.dir/include/moc_your_stuff.cpp.i
 
 CMakeFiles/avic.dir/include/moc_your_stuff.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/avic.dir/include/moc_your_stuff.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/include/moc_your_stuff.cpp -o CMakeFiles/avic.dir/include/moc_your_stuff.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/include/moc_your_stuff.cpp -o CMakeFiles/avic.dir/include/moc_your_stuff.cpp.s
 
 # Object files for target avic
 avic_OBJECTS = \
@@ -246,7 +246,7 @@ avic: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8
 avic: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
 avic: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
 avic: CMakeFiles/avic.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable avic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable avic"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/avic.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -261,6 +261,6 @@ CMakeFiles/avic.dir/clean:
 CMakeFiles/avic.dir/depend: qrc_cluster-gauges.cpp
 CMakeFiles/avic.dir/depend: qrc_images.cpp
 CMakeFiles/avic.dir/depend: include/moc_your_stuff.cpp
-	cd /home/clevin1/CodeWriting/git/Ramone/Code/avic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/clevin1/CodeWriting/git/Ramone/Code/avic /home/clevin1/CodeWriting/git/Ramone/Code/avic /home/clevin1/CodeWriting/git/Ramone/Code/avic/build /home/clevin1/CodeWriting/git/Ramone/Code/avic/build /home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sam/Desktop/repos/fork/Ramone/Code/avic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sam/Desktop/repos/fork/Ramone/Code/avic /home/sam/Desktop/repos/fork/Ramone/Code/avic /home/sam/Desktop/repos/fork/Ramone/Code/avic/build /home/sam/Desktop/repos/fork/Ramone/Code/avic/build /home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/avic.dir/depend
 
