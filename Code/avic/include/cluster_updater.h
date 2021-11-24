@@ -33,7 +33,7 @@ public:
     /** Speed betwwen 0 - 250 **/
     inline void setSpeed(const double &_s) {ValueSource->setProperty("kph",QVariant(_s));}
     /** GearNumber **/
-    inline void setGear(const char &_s) {ValueSource->setProperty("gear",QVariant(_s));}
+    inline void setGear(const char &_s) {ValueSource->setProperty("gear",QVariant(_s+1));}
     /** 0=P, 1=N, 2=R, 3=D, 4=M **/
     inline void setGearPindle_int(const char &_p)  {ValueSource->setProperty("pindle_int",QVariant(_p));}
     /** Set a char directly to gear Pindle Position **/

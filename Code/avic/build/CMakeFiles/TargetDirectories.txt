@@ -1,4 +1,4 @@
-/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/rebuild_cache.dir
-/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/edit_cache.dir
-/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic.dir
-/home/clevin1/CodeWriting/git/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir
+/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/rebuild_cache.dir
+/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/edit_cache.dir
+/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic.dir
+/home/sam/Desktop/repos/fork/Ramone/Code/avic/build/CMakeFiles/avic_autogen.dir

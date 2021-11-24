@@ -181,6 +181,22 @@ namespace scpp
             //std::cout << "Message was written to the socket \n\r";
         }    
     }
+
+    void SocketCan::send(int data[], const int n, const int id){
+        scpp::CanFrame cf_to_write;
+        cf_to_write.id = id;
+        cf_to_write.len = n;
+        for(int i =0; i <n; i++){
+            cf_to_write.data[i] = data[i];
+        }
+        auto write_sc_status = write(cf_to_write);
+
+        if (write_sc_status != scpp::STATUS_OK){
+            std::cout << "something went wrong on socket write, error code :" << int32_t(write_sc_status) << "\n\r";
+        }else{
+            //std::cout << "Message was written to the socket \n\r";
+        }    
+    }
     
 
     SocketCanStatus SocketCan::read(CanFrame & msg)

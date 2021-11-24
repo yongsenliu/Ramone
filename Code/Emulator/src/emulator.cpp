@@ -2,6 +2,18 @@
 #include "../include/emulator.hpp"
 #include "../../libSocketCan/include/socketcan.hpp"
 #include <thread>
+#include <bitset>
+
+
+typedef union _gearbox{
+    struct  _bits {
+    unsigned char GEAR_P:3;
+    unsigned char GEAR_N:3;
+    unsigned char RESERVERD_PADDING:2;
+    }Bits;
+    uint8_t Data[2];
+}Gearbx_t;
+
 
 bool Emulator::setgearPosition(gearPosition_t currentGearPos)
 {
@@ -115,12 +127,63 @@ void Emulator::canSender() {
         std::cout << "Check whether the vcan1 interface is up!" << std::endl;
         exit (-1);
     }
-    int a[3];
+    int engineCanData[5];
     const std::lock_guard<std::mutex> lock(mu);
-    a[0] = int(engineRPM)/256;
-    a[1] = int(engineRPM)%256;
-    a[2] = 0;
-    sockat_can1.send(a,3);
+    
+    engineCanData[0] = int(engineRPM)%256;
+    engineCanData[1] = int(engineRPM)/256;
+    
+    engineCanData[2] = int(vehicleSpeed*2.23694)%256;
+    engineCanData[3] = int(vehicleSpeed*2.23694)/256;
+
+    engineCanData[4] = 0xff;
+    engineCanData[5] = 0xff;
+    //sockat_can1.send(a,3);
+    sockat_can1.send(engineCanData, 6, 0x123);
+
+    int gearboxCanData[5];
+    std::bitset<3> pBits(0);
+    std::bitset<3> gBits(0);
+    std::bitset<2> paBits(0);
+    //const std::lock_guard<std::mutex> lock(mu);
+    
+    
+
+    gBits = gearIndex;
+
+    // struct  _bits {
+    // unsigned char pBits;
+    // unsigned char gBits;
+    // unsigned char paBits;
+    // }Bits;
+
+    
+
+    
+    Gearbx_t g;
+    if (gearPosition == P) {
+        g.Bits.GEAR_P = 0;
+    } else if (gearPosition == N) {
+        g.Bits.GEAR_P = 1;
+    } else if (gearPosition == D) {
+        g.Bits.GEAR_P = 3;
+    } else if (gearPosition == R) {
+        g.Bits.GEAR_P = 2;
+    }
+
+    g.Bits.GEAR_N = gearIndex;
+    
+
+    gearboxCanData[0] = g.Data[0];
+    gearboxCanData[1] = g.Data[1];
+
+    // gearboxCanData[2] = int(vehicleSpeed*2.23694)%256;
+    // gearboxCanData[3] = int(vehicleSpeed*2.23694)/256;
+
+    // gearboxCanData[4] = 0xff;
+    // gearboxCanData[5] = 0xff;
+    //sockat_can1.send(a,3);
+    sockat_can1.send(gearboxCanData, 6, 0x312);
 }
 
 
