@@ -4,6 +4,7 @@
 
 Emulator myEmulator;
 
+/*
 // Test method setGaspedalPosition.
 TEST(emulator, setGaspedalPostion) {
   // Expect that gaspedelposition of 45% ok(true).
@@ -21,7 +22,9 @@ TEST(emulator, setGaspedalPostion) {
 //Expect that gaspedelposition of 100% true
     EXPECT_TRUE(myEmulator.setGaspedalPostion(100));
 }
+*/
 
+/*
 // Test method setgearPosition.
 TEST (emulator, setgearPosition){
   // Expect that gearPosition of N (Neutral) true.
@@ -35,4 +38,10 @@ TEST (emulator, setgearPosition){
 
   // Expect that gearPosition of P (Parking) true.
   EXPECT_TRUE(myEmulator.setgearPosition(P));
+*/
+
+// Test method ignition.
+TEST (emulator, Ignition){
+  // Expect that gearPosition of N (Neutral) true.
+  EXPECT_TRUE(myEmulator.ignitionOn());
 }
