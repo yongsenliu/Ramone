@@ -37,12 +37,13 @@ void Emulator::canReader(){
     while (ignitionOn()) {
         scpp::CanFrame fr;
         if (socketCanReader.read(fr) == scpp::STATUS_OK) {
-            printf("len %d byte, id: %d, data: %02x %02x %02x \n", fr.len, fr.id, 
-                fr.data[0], fr.data[1], fr.data[2]);
+            printf("len %d byte, id: %d, data: %02x %02x %02x %02x \n", fr.len, fr.id, 
+                fr.data[0], fr.data[1], fr.data[2], fr.data[3]);
             const std::lock_guard<std::mutex> lock(mu);
             this->gasPedalPosition = int(fr.data[0]);
             this->gearPosition = gearPosition_t(fr.data[1]);   
             this->ignition = ignition_t(fr.data[2]);
+            this->brkPedal = int(fr.data[3]);
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
@@ -98,11 +99,17 @@ float Emulator::calculateTorque(){
     } else if(engineRPM > 6000){
         maxEngineTorque = 25;
     }
-    return maxEngineTorque * gasPedalPosition / 100;
+    
+    if (brkPedal > 0) {
+        return 0;
+    } else {
+        return maxEngineTorque * gasPedalPosition / 100;
+    }
 }
 
 float Emulator::tractionForce(){
     if(gearPosition == D || gearPosition == R){
+
         return calculateTorque() * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
     } else {
         return 0;
@@ -119,6 +126,10 @@ float Emulator::vehicleAcceleration() {
     float brkForce = 0;
     if (gasPedalPosition == 0) {
         brkForce = engineBreakForce;
+    }
+
+    if (brkPedal == 1) {
+        brkForce = engineBreakForce + 3000;
     }
 
     float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
@@ -192,9 +203,10 @@ void Emulator::calculateEngineRPM(){
 }
 
 void Emulator::run() {
+    const std::lock_guard<std::mutex> lock(mu);
     calculateTorque();
     setVehicleSpeed();
     calculateEngineRPM();
     shiftScheduler();
-    std::cout << "acc%: " << gasPedalPosition << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
+    std::cout << "acc%: " << gasPedalPosition << "brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
 }

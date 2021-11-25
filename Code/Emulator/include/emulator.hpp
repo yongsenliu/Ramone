@@ -84,6 +84,7 @@ class Emulator{
         int gearIndex = 0;
         float vehicleSpeed = 0;
         float vehicleAcc = 0;
+        int brkPedal = 0;
 
     /*CAN communication*/
     scpp::SocketCan socketCanReader;

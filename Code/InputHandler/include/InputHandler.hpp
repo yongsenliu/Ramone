@@ -14,6 +14,7 @@ enum Ignition{Off,On};
 class UserInput{
     private: 
         int accPedalPos = 0;
+        int brkPedal = 0;
         GearLever gearLeverPos = N;
         //bool sensorRunning = true;
         Ignition ignition = On;
