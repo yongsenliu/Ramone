@@ -24,12 +24,11 @@ UserInput::UserInput(){
 void UserInput::PrintSensorValues(){
     std::cout << "The position of the acceleration pedal is: " << accPedalPos << std::endl << "\r";
     std::cout << "The position of the gear lever is: " << GearLever(gearLeverPos) << "\n\r";
-
+    std::cout << "Breaking status is: " << brkPedal << "\n\r";
 }
 
 void UserInput::Sensing(int input){
     switch(input){
-    
     case KEY_UP:
         if(accPedalPos < 100){
             this->accPedalPos = accPedalPos + 5;
@@ -55,6 +54,13 @@ void UserInput::Sensing(int input){
     case 115:
         this->ignition= Off;
         break;
+    case 98:
+        if (this->brkPedal == 0) {
+            this->brkPedal = 1;
+        } else if (this->brkPedal == 1) {
+            this->brkPedal = 0;
+        }
+        
     default:
         break;
     }
@@ -73,11 +79,12 @@ int UserInput::getAccPedalPos() {
 }
 
 void UserInput::ValuesToCan(){
-    int a[3];
+    int a[4];
     a[0] = accPedalPos;
     a[1] = gearLeverPos;
     a[2] = ignition;
-    sockat_can.send(a,3);
+    a[3] = brkPedal;
+    sockat_can.send(a,4);
  }
 
 GearLever UserInput::getGearLeverPosition(){
