@@ -25,6 +25,7 @@ void UserInput::PrintSensorValues(){
     std::cout << "The position of the acceleration pedal is: " << accPedalPos << std::endl << "\r";
     std::cout << "The position of the gear lever is: " << GearLever(gearLeverPos) << "\n\r";
     std::cout << "Breaking status is: " << brkPedal << "\n\r";
+    std::cout << "Ignition key status is: " << ignition << "\n\r";
 }
 
 void UserInput::Sensing(int input){
@@ -52,7 +53,12 @@ void UserInput::Sensing(int input){
         this->gearLeverPos = R;
         break;
     case 115:
-        this->ignition= Off;
+        if (this->ignition == Off) {
+            this->ignition= On;
+        } else if (this->ignition == On) {
+            this->ignition = Off;
+        }
+        
         break;
     case 98:
         if (this->brkPedal == 0) {
