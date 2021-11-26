@@ -42,8 +42,6 @@ void yourStuff::YouHaveJustRecievedACANFrame(const canfd_frame * const _frame) {
         this->InstrumentCluster.ignite(d->RUN);
          this->InstrumentCluster.setRPM(d->RPM);
          this->InstrumentCluster.setSpeed(d->SPD);
-        std::cout << "RPM recieved by cluster" << d->RPM << std::endl;
-
     }
         break;
     default:

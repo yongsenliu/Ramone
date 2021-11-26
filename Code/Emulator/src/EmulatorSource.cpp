@@ -279,7 +279,6 @@ void Emulator::run() {
     setVehicleSpeed();
     calculateEngineRPM();
     shiftScheduler();
-    // std::cout << "acc%: " << gasPedalPosition << "brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
 }
 
 void Emulator::print() {

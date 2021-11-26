@@ -14,11 +14,7 @@ set(CMAKE_CXX_STANDARD 11)
 #				./libSocketCan/include
 #				./Emulator/include)
 
-#target_link_libraries(Emulator PUBLIC pthread)
-
-
-
-
+# target_link_libraries(Emulator PUBLIC pthread)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -45,5 +41,5 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(testEmulator)
+# gtest_discover_tests(testEmulator)
 
