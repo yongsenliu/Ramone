@@ -4,7 +4,7 @@
 int main(/*int argc, char ** argv*/){
     UserInput user;
     int input;
-    while(user.IsRunning()){
+    while(/*user.IsRunning()*/true){
         input = getch();
         user.Sensing(input);
         user.ValuesToCan();

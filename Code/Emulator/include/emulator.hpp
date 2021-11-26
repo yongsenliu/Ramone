@@ -28,6 +28,9 @@ class Emulator{
         Emulator();
         void canReader();
         void canSender();
+        void canSender_reset();
+        void clusterCheck();
+        void setIgnition();
         bool ignitionOn();
         int rasterTimeInMiliSeconds();
         float calculateTorque();
@@ -39,6 +42,9 @@ class Emulator{
         void calculateEngineRPM();
         float engineRPMChangeInNeutral();
         void run();
+        void print();
+
+        bool isChecked = false;
 
     private:
     /*Vehicle constants*/
@@ -79,12 +85,15 @@ class Emulator{
         int gasPedalPosition = 0;
         float engineRPM = engineIdlingRPM;
         gearPosition_t gearPosition = N;
-        ignition_t ignition = ON;
+        ignition_t ignition = OFF;//ON;
         std::mutex mu;
         int gearIndex = 0;
         float vehicleSpeed = 0;
         float vehicleAcc = 0;
         int brkPedal = 0;
+        bool isIgnitionOn = false;
+        
+        int checkCnt = 0;
 
     /*CAN communication*/
     scpp::SocketCan socketCanReader;

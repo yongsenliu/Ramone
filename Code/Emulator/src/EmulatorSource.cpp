@@ -14,12 +14,25 @@ Emulator::Emulator(){
     }
 }
 
-bool Emulator::ignitionOn() {
-    if (ignition == ON) {
-        return true;
-    }else {
-        return false;
+void Emulator::setIgnition() {
+    if ((brkPedal == 1) && (ignition == ON)) {
+        isIgnitionOn = true;
+    } else if ((vehicleSpeed < 100) && (ignition == OFF)) {
+        isIgnitionOn = false;
     }
+
+}
+
+// bool Emulator::ignitionOn() {
+//     if (ignition == ON) {
+//         return true;
+//     }else {
+//         return false;
+//     }
+// }
+
+bool Emulator::ignitionOn() {
+    return isIgnitionOn;
 }
 
 float absolute(float value){
@@ -34,7 +47,7 @@ int Emulator::rasterTimeInMiliSeconds(){
 }
 
 void Emulator::canReader(){
-    while (ignitionOn()) {
+    while (/*ignitionOn()*/true) {
         scpp::CanFrame fr;
         if (socketCanReader.read(fr) == scpp::STATUS_OK) {
             printf("len %d byte, id: %d, data: %02x %02x %02x %02x \n", fr.len, fr.id, 
@@ -82,6 +95,64 @@ void Emulator::canSender() {
     gearboxCanData[1] = g.Data[1];
 
     socketCanWriter.send(gearboxCanData, 2, 0x312);
+
+    int gaugeCanData[3];
+    gaugeCanData[0] = 100;
+    gaugeCanData[1] = 200;
+    gaugeCanData[2] = 50;
+
+    socketCanWriter.send(gaugeCanData, 3, 0x321);
+
+
+}
+
+void Emulator::canSender_reset() {
+    int engineCanDataReset[5];
+    engineCanDataReset[0] = 0;
+    engineCanDataReset[1] = 0;
+    engineCanDataReset[2] = 0;
+    engineCanDataReset[3] = 0;
+    socketCanWriter.send(engineCanDataReset, 4, 0x123);
+    
+    int gearboxCanDataReset[2];
+    gearboxCanDataReset[0] = 0x00;
+    gearboxCanDataReset[1] = 0x00;
+    socketCanWriter.send(gearboxCanDataReset, 2, 0x312);
+
+    int gaugeCanDataReset[1];
+    gaugeCanDataReset[0] = 0;
+    //gaugeCanData[1] = 0;
+    socketCanWriter.send(gaugeCanDataReset, 1, 0x321);
+
+    // int iconsCanDataReset[2];
+    // iconsCanDataReset[0] = 0x00;
+    // iconsCanDataReset[1] = 0x00;
+    // // iconsCanDataReset[2] = 0x00;
+    // socketCanWriter.send(gaugeCanDataReset, 2, 0x213);
+
+    // int userinCanDataReset[2];
+    // userinCanDataReset[0] = 0x00;
+    // userinCanDataReset[1] = 0x00;
+    // socketCanWriter.send(userinCanDataReset, 2, 0x111);
+
+}
+
+void Emulator::clusterCheck() {
+    int iconsData[2];
+    
+    if (isChecked == false) {
+        iconsData[0] = 0x00;
+        iconsData[1] = 0x00;
+        socketCanWriter.send(iconsData, 2, 0x213);
+        checkCnt++;
+    }
+    if (checkCnt == 200) {
+        iconsData[0] = 0;
+        iconsData[1] = 0;
+        socketCanWriter.send(iconsData, 2, 0x213);
+        isChecked = true;
+        checkCnt = 0;
+    }
 }
 
 float Emulator::calculateTorque(){
@@ -129,7 +200,7 @@ float Emulator::vehicleAcceleration() {
     }
 
     if (brkPedal == 1) {
-        brkForce = engineBreakForce + 3000;
+        brkForce = engineBreakForce + 5000;
     }
 
     float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
@@ -195,7 +266,7 @@ void Emulator::calculateEngineRPM(){
     } else {
         this->engineRPM += engineRPMChangeInNeutral();
     }
-    if(engineRPM < engineIdlingRPM - 75){
+    if(engineRPM < engineIdlingRPM - 200){
         this->engineRPM = engineIdlingRPM;
     }else if(engineRPM > engineMaxRPM){
         this->engineRPM = engineMaxRPM - 750;
@@ -208,5 +279,10 @@ void Emulator::run() {
     setVehicleSpeed();
     calculateEngineRPM();
     shiftScheduler();
-    std::cout << "acc%: " << gasPedalPosition << "brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
+    // std::cout << "acc%: " << gasPedalPosition << "brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
+}
+
+void Emulator::print() {
+    const std::lock_guard<std::mutex> lock(mu);
+    std::cout << "Ignition: " << isIgnitionOn << ", acc%: " << gasPedalPosition << ", brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
 }
