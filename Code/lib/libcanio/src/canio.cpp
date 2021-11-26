@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <linux/can/raw.h>
 #include <fcntl.h>
-#include "canio.h"
+#include "../include/canio/canio.h"
 
 namespace CAN_GENERIC {
 bool setSocketNONBlockingEnabled(const int &_fd, const bool &_blocking = false) {
