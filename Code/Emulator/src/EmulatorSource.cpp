@@ -50,13 +50,15 @@ void Emulator::canReader(){
     while (/*ignitionOn()*/true) {
         scpp::CanFrame fr;
         if (socketCanReader.read(fr) == scpp::STATUS_OK) {
-            printf("len %d byte, id: %d, data: %02x %02x %02x %02x \n", fr.len, fr.id, 
+            printf("len %d byte, id: %d, data: %02x %02x %02x %02x %02x \n", fr.len, fr.id, 
                 fr.data[0], fr.data[1], fr.data[2], fr.data[3]);
             const std::lock_guard<std::mutex> lock(mu);
             this->gasPedalPosition = int(fr.data[0]);
             this->gearPosition = gearPosition_t(fr.data[1]);   
             this->ignition = ignition_t(fr.data[2]);
             this->brkPedal = int(fr.data[3]);
+            this->isTerminated = bool(fr.data[4]);
+
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
@@ -285,4 +287,8 @@ void Emulator::run() {
 void Emulator::print() {
     const std::lock_guard<std::mutex> lock(mu);
     std::cout << "Ignition: " << isIgnitionOn << ", acc%: " << gasPedalPosition << ", brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
+}
+
+bool Emulator::terminator() {
+    return isTerminated;
 }

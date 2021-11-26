@@ -43,6 +43,7 @@ class Emulator{
         float engineRPMChangeInNeutral();
         void run();
         void print();
+        bool terminator();
 
         bool isChecked = false;
 
@@ -95,9 +96,11 @@ class Emulator{
         
         int checkCnt = 0;
 
+        bool isTerminated = false;
+
     /*CAN communication*/
-    scpp::SocketCan socketCanReader;
-    scpp::SocketCan socketCanWriter;
-};
+        scpp::SocketCan socketCanReader;
+        scpp::SocketCan socketCanWriter;
+    };
 
 #endif // Emulator_H

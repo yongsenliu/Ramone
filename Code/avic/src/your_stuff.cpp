@@ -74,7 +74,7 @@ bool yourStuff::run() {
     else if (status == CANOpener::ReadStatus::NAVAL ||
              status == CANOpener::ReadStatus::ENDOF) this->Counter++;
     else   this->Counter = 0;
-    //if (this->Counter > 200) ret = false;
+    if (this->Counter > 200) ret = false;
     return ret;
 }
 
