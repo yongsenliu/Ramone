@@ -93,7 +93,6 @@ class Emulator{
         float vehicleAcc = 0;
         int brkPedal = 0;
         bool isIgnitionOn = false;
-        
         int checkCnt = 0;
 
         bool isTerminated = false;
