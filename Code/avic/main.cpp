@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     QObject *vs = mobjs.first()->findChild<QObject*>("valueSource");
     /***** Your Code Goes Below Here ******/
     yourStuff _(parser.value("can-interface").toStdString(),vs);
-
+ 
     /***** Do Not Block Executation  ******/
     return app.exec();
 }

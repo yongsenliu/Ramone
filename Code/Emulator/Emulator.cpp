@@ -17,8 +17,10 @@ int main() {
             myEmulator.isChecked = false;
         }
         myEmulator.print();
+
         std::this_thread::sleep_for(std::chrono::milliseconds(myEmulator.rasterTimeInMiliSeconds()));
     }
+
     t1.join();
     std::cout << "The emulator is now terminated!";
     return 0;
