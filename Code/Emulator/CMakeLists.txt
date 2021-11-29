@@ -41,5 +41,9 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-# gtest_discover_tests(testEmulator)
+add_custom_command(TARGET testEmulator
+        POST_BUILD
+        COMMAND /bin/sh ./../../../setvcan.sh
+        )
+gtest_discover_tests(testEmulator)
 
