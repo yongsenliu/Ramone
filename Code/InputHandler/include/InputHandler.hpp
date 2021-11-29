@@ -20,6 +20,8 @@ class UserInput{
         Ignition ignition = On;
         scpp::SocketCan sockat_can;
 
+        bool isTerminated = false;
+
     public:
         UserInput();
         int getAccPedalPos();
@@ -28,6 +30,8 @@ class UserInput{
         bool IsRunning();
         void ValuesToCan();
         GearLever getGearLeverPosition();
+
+        bool terminator();
 };
 
 void inputWindowInit();

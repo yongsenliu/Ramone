@@ -66,7 +66,12 @@ void UserInput::Sensing(int input){
         } else if (this->brkPedal == 1) {
             this->brkPedal = 0;
         }
-        
+        break;
+
+    case 27:
+        this->isTerminated = true;
+        break;
+
     default:
         break;
     }
@@ -85,14 +90,19 @@ int UserInput::getAccPedalPos() {
 }
 
 void UserInput::ValuesToCan(){
-    int a[4];
+    int a[5];
     a[0] = accPedalPos;
     a[1] = gearLeverPos;
     a[2] = ignition;
     a[3] = brkPedal;
-    sockat_can.send(a,4);
+    a[4] = isTerminated;
+    sockat_can.send(a,5);
  }
 
 GearLever UserInput::getGearLeverPosition(){
     return gearLeverPos;
+}
+
+bool UserInput::terminator() {
+    return isTerminated;
 }

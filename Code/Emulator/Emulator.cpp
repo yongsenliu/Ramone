@@ -4,7 +4,7 @@ int main() {
     Emulator myEmulator;
     std::thread t1(&Emulator::canReader, &myEmulator);
 
-    while(/*myEmulator.ignitionOn()*/true) {
+    while(!myEmulator.terminator()) {
         myEmulator.setIgnition();
         if (myEmulator.ignitionOn()) {
             std::cout << "Engine is on." << std::endl;
@@ -17,8 +17,11 @@ int main() {
             myEmulator.isChecked = false;
         }
         myEmulator.print();
+
         std::this_thread::sleep_for(std::chrono::milliseconds(myEmulator.rasterTimeInMiliSeconds()));
     }
+
     t1.join();
+    std::cout << "The emulator is now terminated!";
     return 0;
 }
