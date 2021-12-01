@@ -15,7 +15,7 @@ Emulator::Emulator(){
 }
 
 void Emulator::setIgnition() {
-    if ((brkPedal == 1) && (ignition == ignition_t::ON)) {
+    if ((brkPedal > 0) && (ignition == ignition_t::ON)) {
         isIgnitionOn = true;
     } else if ((vehicleSpeed < 100) && (ignition == ignition_t::OFF)) {
         isIgnitionOn = false;
@@ -71,13 +71,13 @@ void Emulator::canSender() {
     Gearbx_t g;
 
     if (gearPosition == gearPosition_t::P) {
-        g.Bits.GEAR_P = 0;
+        g.Bits.GEAR_P = 0; //0b000
     } else if (gearPosition == gearPosition_t::N) {
-        g.Bits.GEAR_P = 1;
+        g.Bits.GEAR_P = 1; //0b001
     } else if (gearPosition == gearPosition_t::D) {
-        g.Bits.GEAR_P = 3;
+        g.Bits.GEAR_P = 3; //0b011
     } else if (gearPosition == gearPosition_t::R) {
-        g.Bits.GEAR_P = 2;
+        g.Bits.GEAR_P = 2; //0b010
     }
 
     g.Bits.GEAR_N = gearIndex;
@@ -88,9 +88,9 @@ void Emulator::canSender() {
     socketCanWriter.send(gearboxCanData, 2, VE::gearboxCanID);
 
     int gaugeCanData[3];
-    gaugeCanData[0] = 100;
-    gaugeCanData[1] = 200;
-    gaugeCanData[2] = 50;
+    gaugeCanData[0] = VE::fakeGaugeData1;
+    gaugeCanData[1] = VE::fakeGaugeData2;
+    gaugeCanData[2] = VE::fakeGaugeData3;
 
     socketCanWriter.send(gaugeCanData, 3, VE::gaugeCanID);
 
@@ -194,7 +194,7 @@ float Emulator::vehicleAcceleration() {
         sumForce = force - VE::roadLoadForce - aerodynamicForce() - brkForce;
     }
 
-    if ((gasPedalPosition == 0) && ((engineRPM < 1050) && (engineRPM > 950))) {
+    if ((gasPedalPosition == 0) && ((engineRPM < (VE::engineIdlingRPM + 50)) && (engineRPM > (VE::engineIdlingRPM - 50)))) {
         sumForce = 0;
     }
 
@@ -217,9 +217,9 @@ void Emulator::setVehicleSpeed(){
 
 void Emulator::shiftScheduler(){
     if(gearPosition == gearPosition_t::D){
-        if (engineRPM >= 5000 && gearIndex < 7){
+        if (engineRPM >= VE::gearShiftPointHighRPM && gearIndex < 7){
             gearIndex = gearIndex +1;
-        } else if (engineRPM <= 3000 && gearIndex > 0){
+        } else if (engineRPM <= VE::gearShiftPointLowRPM && gearIndex > 0){
             gearIndex = gearIndex - 1;
         }
     } else if(gearPosition == gearPosition_t::R){
