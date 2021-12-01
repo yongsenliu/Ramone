@@ -83,8 +83,8 @@ bool UserInput::isTerminated() {
 
 void inputAbstractionToCan(int (&a)[5], UserInputCanData values){
     a[0] = values.accPedalPos;
-    a[1] = (int)values.gearLeverPos;
-    a[2] = (int)values.ignition;
+    a[1] = static_cast<int>(values.gearLeverPos);
+    a[2] = static_cast<int>(values.ignition);
     a[3] = values.brkPedal;
     a[4] = values.shutdown;
 }

@@ -10,7 +10,7 @@
 enum class GearLever{P,D,N,R};
 enum class Ignition{Off,On};
 struct UserInputCanData{
-    int accPedalPos;
+    unsigned int accPedalPos;
     GearLever gearLeverPos;
     Ignition ignition;
     int brkPedal;
