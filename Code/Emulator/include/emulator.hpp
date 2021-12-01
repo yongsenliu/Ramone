@@ -11,9 +11,9 @@
 #include "../../libSocketCan/include/socketcan.hpp"
 #include "VehicleParameters.hpp"
 
-enum gearPosition_t {P,D,N,R};
+enum class gearPosition_t {P,D,N,R};
 
-enum ignition_t {OFF, ON};
+enum class ignition_t {OFF, ON};
 
 typedef union _gearbox{
     struct  _bits {
@@ -32,9 +32,6 @@ typedef struct _engine
     unsigned char brkPedalPos;
     unsigned char isTerminated;
 }Engine_t;
-
-
-// float absolute(float value);
 
 class Emulator{
     public:
@@ -58,16 +55,12 @@ class Emulator{
         void print();
         bool terminator();
 
-        bool isChecked = false;
-
     private:
-
-
     /*Variables*/
         int gasPedalPosition = 0;
         float engineRPM = VE::engineIdlingRPM;
-        gearPosition_t gearPosition = N;
-        ignition_t ignition = OFF;//ON;
+        gearPosition_t gearPosition = gearPosition_t::N;
+        ignition_t ignition = ignition_t::OFF;
         mutable std::mutex mu;
         int gearIndex = 0;
         float vehicleSpeed = 0;
