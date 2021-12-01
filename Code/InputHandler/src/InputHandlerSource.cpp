@@ -1,108 +1,90 @@
 #include "../include/InputHandler.hpp"
 
-void inputWindowInit(){
+void initializeWindowAndCan(scpp::SocketCan &socketCan){
     initscr();
     keypad(stdscr, TRUE);
     cbreak();
     noecho();
-}
-
-UserInput::UserInput(){
-    inputWindowInit();
-    if (sockat_can.open("vcan0") != scpp::STATUS_OK){
+    if (socketCan.open("vcan0") != scpp::STATUS_OK){
         printw("Could not initialize CAN-network");
         exit(1);
     }
-    printw("Gear lever and acceleration pedal is up and running. Acceleration pedal position is ");
-    printw("%d", accPedalPos);
-    printw(" %%");
-    printw(" and Gearlever is in ");
-    printw("%c", gearLeverPos);
-    printw(" position. To accelerate use UP-key and deaccelerate use DOWN-key. To change the gear lever press [p/d/n/r]-keys. To turn off press s-key.\n");
+}
+
+void printInstructions(){
+    printw("To change the acceleration pedal use Up-key and Down key.\n");
+    printw("To change the gear lever position use P-key, D-key, N-key or R-key.\n");
+    printw("To apply breaks use B-key.\n");
+    printw("To turn the ignition on and off use S-key.\n");
+    printw("To shut down the input handler and emulator use Esc-key\n");
+
 }
 
 void UserInput::PrintSensorValues(){
-    std::cout << "The position of the acceleration pedal is: " << accPedalPos << std::endl << "\r";
-    std::cout << "The position of the gear lever is: " << GearLever(gearLeverPos) << "\n\r";
-    std::cout << "Breaking status is: " << brkPedal << "\n\r";
-    std::cout << "Ignition key status is: " << ignition << "\n\r";
+    std::cout << "The position of the acceleration pedal is: " << this->canData.accPedalPos << std::endl << "\r";
+    std::cout << "The position of the gear lever is: " << (int)this->canData.gearLeverPos << "\n\r";
+    std::cout << "Breaking status is: " << this->canData.brkPedal << "\n\r";
+    std::cout << "Ignition key status is: " << (int)this->canData.ignition << "\n\r";
 }
 
 void UserInput::Sensing(int input){
     switch(input){
     case KEY_UP:
-        if(accPedalPos < 100){
-            this->accPedalPos = accPedalPos + 5;
+        if(this->canData.accPedalPos < accPedalMax){
+            this->canData.accPedalPos += accPedalChange;
         }
         break;
     case KEY_DOWN:
-        if(accPedalPos > 0){
-            this->accPedalPos = accPedalPos - 5;
+        if(this->canData.accPedalPos > accPedalMin){
+            this->canData.accPedalPos -= accPedalChange;
         }
         break;
-    case 112:
-        this->gearLeverPos = P;
+    case NC::P_KEY:
+        this->canData.gearLeverPos = GearLever::P;
         break;
-    case 100:
-        this->gearLeverPos = D;
+    case NC::D_KEY:
+        this->canData.gearLeverPos = GearLever::D;
         break;
-    case 110:
-        this->gearLeverPos = N;
+    case NC::N_KEY:
+        this->canData.gearLeverPos = GearLever::N;
         break;
-    case 114:
-        this->gearLeverPos = R;
+    case NC::R_KEY:
+        this->canData.gearLeverPos = GearLever::R;
         break;
-    case 115:
-        if (this->ignition == Off) {
-            this->ignition= On;
-        } else if (this->ignition == On) {
-            this->ignition = Off;
-        }
-        
-        break;
-    case 98:
-        if (this->brkPedal == 0) {
-            this->brkPedal = 1;
-        } else if (this->brkPedal == 1) {
-            this->brkPedal = 0;
+    case NC::S_KEY:
+        if (this->canData.ignition == Ignition::Off) {
+            this->canData.ignition = Ignition::On;
+        } else if (this->canData.ignition == Ignition::On) {
+            this->canData.ignition = Ignition::Off;
         }
         break;
-
-    case 27:
-        this->isTerminated = true;
+    case NC::B_KEY:
+        if (this->canData.brkPedal == 0) {
+            this->canData.brkPedal = 1;
+        } else if (this->canData.brkPedal == 1) {
+            this->canData.brkPedal = 0;
+        }
         break;
-
+    case NC::ESC_KEY:
+        this->canData.shutdown = true;
+        break;
     default:
         break;
     }
 }
 
-bool UserInput::IsRunning(){
-    if(ignition == On){
-        return true;
-    } else{
-        return false;
-    }
-}
-
-int UserInput::getAccPedalPos() {
-    return accPedalPos;
-}
-
-void UserInput::ValuesToCan(){
-    int a[5];
-    a[0] = accPedalPos;
-    a[1] = gearLeverPos;
-    a[2] = ignition;
-    a[3] = brkPedal;
-    a[4] = isTerminated;
-    sockat_can.send(a,5);
+UserInputCanData UserInput::ValuesToCan(){
+    return this->canData;
  }
 
-GearLever UserInput::getGearLeverPosition(){
-    return gearLeverPos;
+bool UserInput::isTerminated() {
+    return this->canData.shutdown;
 }
 
-bool UserInput::terminator() {
-    return isTerminated;
+void inputAbstractionToCan(int (&a)[5], UserInputCanData values){
+    a[0] = values.accPedalPos;
+    a[1] = (int)values.gearLeverPos;
+    a[2] = (int)values.ignition;
+    a[3] = values.brkPedal;
+    a[4] = values.shutdown;
 }
