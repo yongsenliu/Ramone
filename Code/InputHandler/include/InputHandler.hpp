@@ -2,38 +2,39 @@
 #define INPUTHANDLER_HPP
 
 #include <iostream>
-#include <stdio.h>
-#include <unistd.h>
-#include <termios.h>
 #include <ncurses.h>
+#include <array> 
 #include "../../libSocketCan/include/socketcan.hpp"
+#include "NcKeyBindings.hpp"
 
-enum GearLever{P,D,N,R};
-enum Ignition{Off,On};
-
-class UserInput{
-    private: 
-        int accPedalPos = 0;
-        int brkPedal = 0;
-        GearLever gearLeverPos = N;
-        //bool sensorRunning = true;
-        Ignition ignition = On;
-        scpp::SocketCan sockat_can;
-
-        bool isTerminated = false;
-
-    public:
-        UserInput();
-        int getAccPedalPos();
-        void Sensing(int input);
-        void PrintSensorValues();
-        bool IsRunning();
-        void ValuesToCan();
-        GearLever getGearLeverPosition();
-
-        bool terminator();
+enum class GearLever{P,D,N,R};
+enum class Ignition{Off,On};
+struct UserInputCanData{
+    int accPedalPos;
+    GearLever gearLeverPos;
+    Ignition ignition;
+    int brkPedal;
+    bool shutdown;
 };
 
-void inputWindowInit();
+class UserInput{
+    private:
+        //Constants
+        const unsigned int accPedalMax = 100;
+        const unsigned int accPedalMin = 0;
+        const unsigned int accPedalChange = 5;
+        //Variables 
+        UserInputCanData canData ={0, GearLever::N, Ignition::Off, 0, false};
+
+    public:
+        void Sensing(int input);
+        void PrintSensorValues();
+        UserInputCanData ValuesToCan();
+        bool isTerminated();
+};
+
+void initializeWindowAndCan(scpp::SocketCan &socketCan);
+void inputAbstractionToCan(int (&a)[5], UserInputCanData values);
+void printInstructions();
 
 #endif // INPUTHANDLER_HPP
