@@ -8,13 +8,11 @@ int main() {
         myEmulator.setIgnition();
         if (myEmulator.ignitionOn()) {
             std::cout << "Engine is on." << std::endl;
-            //myEmulator.clusterCheck();
             myEmulator.run();
             myEmulator.canSender();
         } else {
             std::cout << "Engine is off." << std::endl;
             myEmulator.canSender_reset();
-            myEmulator.isChecked = false;
         }
         myEmulator.print();
 

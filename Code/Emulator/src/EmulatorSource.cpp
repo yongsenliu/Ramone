@@ -15,9 +15,9 @@ Emulator::Emulator(){
 }
 
 void Emulator::setIgnition() {
-    if ((brkPedal == 1) && (ignition == ON)) {
+    if ((brkPedal == 1) && (ignition == ignition_t::ON)) {
         isIgnitionOn = true;
-    } else if ((vehicleSpeed < 100) && (ignition == OFF)) {
+    } else if ((vehicleSpeed < 100) && (ignition == ignition_t::OFF)) {
         isIgnitionOn = false;
     }
 
@@ -70,13 +70,13 @@ void Emulator::canSender() {
     int gearboxCanData[2];
     Gearbx_t g;
 
-    if (gearPosition == P) {
+    if (gearPosition == gearPosition_t::P) {
         g.Bits.GEAR_P = 0;
-    } else if (gearPosition == N) {
+    } else if (gearPosition == gearPosition_t::N) {
         g.Bits.GEAR_P = 1;
-    } else if (gearPosition == D) {
+    } else if (gearPosition == gearPosition_t::D) {
         g.Bits.GEAR_P = 3;
-    } else if (gearPosition == R) {
+    } else if (gearPosition == gearPosition_t::R) {
         g.Bits.GEAR_P = 2;
     }
 
@@ -160,9 +160,9 @@ float Emulator::tractionForce(){
     //     return 0;
     // }
 
-    if (gearPosition == D) {
+    if (gearPosition == gearPosition_t::D) {
         return calculateTorque() * VE::gearRatios[gearIndex] *VE::finalDriveRatio * VE::drivelineEfficiency / VE::dynamicWheelRadius;
-    } else if (gearPosition == R) {
+    } else if (gearPosition == gearPosition_t::R) {
         return - calculateTorque() * VE::gearRatios[gearIndex] *VE::finalDriveRatio * VE::drivelineEfficiency / VE::dynamicWheelRadius;
     } else {
         return 0;
@@ -216,13 +216,13 @@ void Emulator::setVehicleSpeed(){
 }
 
 void Emulator::shiftScheduler(){
-    if(gearPosition == D){
+    if(gearPosition == gearPosition_t::D){
         if (engineRPM >= 5000 && gearIndex < 7){
             gearIndex = gearIndex +1;
         } else if (engineRPM <= 3000 && gearIndex > 0){
             gearIndex = gearIndex - 1;
         }
-    } else if(gearPosition == R){
+    } else if(gearPosition == gearPosition_t::R){
         gearIndex = 0;
     }
 }
@@ -248,7 +248,7 @@ float Emulator::engineRPMChangeInNeutral(){
 }
 
 void Emulator::calculateEngineRPM(){
-    if(gearPosition == D || gearPosition == R){
+    if(gearPosition == gearPosition_t::D || gearPosition == gearPosition_t::R){
         this->engineRPM = 30 * fabs(vehicleSpeed) / VE::dynamicWheelRadius * VE::gearRatios[gearIndex] *VE::finalDriveRatio / 3.14;
     } else {
         this->engineRPM += engineRPMChangeInNeutral();
