@@ -17,7 +17,9 @@ Emulator::Emulator(){
 void Emulator::setIgnition() {
     if ((brkPedal > 0) && (ignition == ignition_t::ON)) {
         isIgnitionOn = true;
-    } else if ((vehicleSpeed < 100) && (ignition == ignition_t::OFF)) {
+    }
+
+    if ((vehicleSpeed < VE::maxEngineIgnitionOffSpeed) && (ignition == ignition_t::OFF)) {
         isIgnitionOn = false;
     }
 
@@ -178,14 +180,13 @@ float Emulator::vehicleAcceleration() {
     float brkForce = 0;
     float sumForce = 0;
     if (gasPedalPosition == 0) {
-        brkForce = VE::engineBreakForce;
+        brkForce = VE::engineBrakeForce;
     }
 
     if (brkPedal == 1) {
-        brkForce = VE::engineBreakForce + 5000;
+        brkForce = VE::engineBrakeForce + VE::defaultBrakePedalForce;
     }
 
-    //float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
     if (vehicleSpeed == 0) {
         sumForce = force;
     } else if (vehicleSpeed < 0) {
