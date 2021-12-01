@@ -27,11 +27,12 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(Emulator ./Emulator.cpp ./src/EmulatorSource.cpp ../libSocketCan/src/socketcan.cpp)
+add_executable(Emulator ./Emulator.cpp ./src/EmulatorSource.cpp)
 add_executable(testEmulator ./testEmulator.cpp ./src/EmulatorSource.cpp ../libSocketCan/src/socketcan.cpp)
 target_link_libraries(
   Emulator
   pthread
+  SocketCan
 )
 
 target_link_libraries(
@@ -46,4 +47,5 @@ add_custom_command(TARGET testEmulator
         COMMAND /bin/sh ./../../../setvcan.sh
         )
 gtest_discover_tests(testEmulator)
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 

@@ -15,3 +15,4 @@ target_include_directories(InputHandler PUBLIC
 				./InputHandler/include)
 
 target_link_libraries(InputHandler PUBLIC SocketCan curses)
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
