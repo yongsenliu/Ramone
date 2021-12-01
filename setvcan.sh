@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "vcan0 and vcan1 is ready!"
+echo "Setup vcan0 and vcan1."
 
 sudo modprobe can
 sudo modprobe vcan
