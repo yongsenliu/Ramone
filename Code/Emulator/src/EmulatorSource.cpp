@@ -28,7 +28,7 @@ bool Emulator::ignitionOn() {
 }
 
 int Emulator::rasterTimeInMiliSeconds(){
-    return dT * 1000;
+    return VE::dT * 1000;
 }
 
 void Emulator::canReader(){
@@ -60,12 +60,12 @@ void Emulator::canSender() {
     engineCanData[0] = int(engineRPM) % 256;
     engineCanData[1] = int(engineRPM) / 256;
     
-    engineCanData[2] = int(fabs(vehicleSpeed) * spdConvert) % 256;
-    engineCanData[3] = int(fabs(vehicleSpeed) * spdConvert) / 256;
+    engineCanData[2] = int(fabs(vehicleSpeed) * VE::spdConvert) % 256;
+    engineCanData[3] = int(fabs(vehicleSpeed) * VE::spdConvert) / 256;
 
     engineCanData[4] = 0xff;
     engineCanData[5] = 0xff;
-    socketCanWriter.send(engineCanData, 6, egineCanID);
+    socketCanWriter.send(engineCanData, 6, VE::egineCanID);
 
     int gearboxCanData[2];
     Gearbx_t g;
@@ -85,14 +85,14 @@ void Emulator::canSender() {
     gearboxCanData[0] = g.Data[0];
     gearboxCanData[1] = g.Data[1];
 
-    socketCanWriter.send(gearboxCanData, 2, gearboxCanID);
+    socketCanWriter.send(gearboxCanData, 2, VE::gearboxCanID);
 
     int gaugeCanData[3];
     gaugeCanData[0] = 100;
     gaugeCanData[1] = 200;
     gaugeCanData[2] = 50;
 
-    socketCanWriter.send(gaugeCanData, 3, gaugeCanID);
+    socketCanWriter.send(gaugeCanData, 3, VE::gaugeCanID);
 
 
 }
@@ -103,17 +103,17 @@ void Emulator::canSender_reset() {
     engineCanDataReset[1] = 0;
     engineCanDataReset[2] = 0;
     engineCanDataReset[3] = 0;
-    socketCanWriter.send(engineCanDataReset, 4, egineCanID);
+    socketCanWriter.send(engineCanDataReset, 4, VE::egineCanID);
     
     int gearboxCanDataReset[2];
     gearboxCanDataReset[0] = 0x00;
     gearboxCanDataReset[1] = 0x00;
-    socketCanWriter.send(gearboxCanDataReset, 2, gearboxCanID);
+    socketCanWriter.send(gearboxCanDataReset, 2, VE::gearboxCanID);
 
     int gaugeCanDataReset[1];
     gaugeCanDataReset[0] = 0;
     //gaugeCanData[1] = 0;
-    socketCanWriter.send(gaugeCanDataReset, 1, gaugeCanID);
+    socketCanWriter.send(gaugeCanDataReset, 1, VE::gaugeCanID);
 
     // int iconsCanDataReset[2];
     // iconsCanDataReset[0] = 0x00;
@@ -127,24 +127,6 @@ void Emulator::canSender_reset() {
     // socketCanWriter.send(userinCanDataReset, 2, 0x111);
 
 }
-
-// void Emulator::clusterCheck() {
-//     int iconsData[2];
-    
-//     if (isChecked == false) {
-//         iconsData[0] = 0x00;
-//         iconsData[1] = 0x00;
-//         socketCanWriter.send(iconsData, 2, 0x213);
-//         checkCnt++;
-//     }
-//     if (checkCnt == 200) {
-//         iconsData[0] = 0;
-//         iconsData[1] = 0;
-//         socketCanWriter.send(iconsData, 2, 0x213);
-//         isChecked = true;
-//         checkCnt = 0;
-//     }
-// }
 
 float Emulator::calculateTorque(){
     float maxEngineTorque;
@@ -179,16 +161,16 @@ float Emulator::tractionForce(){
     // }
 
     if (gearPosition == D) {
-        return calculateTorque() * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
+        return calculateTorque() * VE::gearRatios[gearIndex] *VE::finalDriveRatio * VE::drivelineEfficiency / VE::dynamicWheelRadius;
     } else if (gearPosition == R) {
-        return - calculateTorque() * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
+        return - calculateTorque() * VE::gearRatios[gearIndex] *VE::finalDriveRatio * VE::drivelineEfficiency / VE::dynamicWheelRadius;
     } else {
         return 0;
     }
 }
 
 float Emulator::aerodynamicForce(){
-    return airDensity * dragCoefficient * vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
+    return VE::airDensity * VE::dragCoefficient * VE::vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
 }
 
 float Emulator::vehicleAcceleration() {
@@ -196,20 +178,20 @@ float Emulator::vehicleAcceleration() {
     float brkForce = 0;
     float sumForce = 0;
     if (gasPedalPosition == 0) {
-        brkForce = engineBreakForce;
+        brkForce = VE::engineBreakForce;
     }
 
     if (brkPedal == 1) {
-        brkForce = engineBreakForce + 5000;
+        brkForce = VE::engineBreakForce + 5000;
     }
 
     //float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
     if (vehicleSpeed == 0) {
         sumForce = force;
     } else if (vehicleSpeed < 0) {
-        sumForce = force + roadLoadForce + aerodynamicForce() + brkForce;
+        sumForce = force + VE::roadLoadForce + aerodynamicForce() + brkForce;
     } else if (vehicleSpeed > 0) {
-        sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
+        sumForce = force - VE::roadLoadForce - aerodynamicForce() - brkForce;
     }
 
     if ((gasPedalPosition == 0) && ((engineRPM < 1050) && (engineRPM > 950))) {
@@ -220,12 +202,12 @@ float Emulator::vehicleAcceleration() {
     //     sumForce = - sumForce;
     // }
 
-    return  sumForce / vehicleMass;
+    return  sumForce / VE::vehicleMass;
 }
 
 void Emulator::setVehicleSpeed(){
     float lastVehicleSpeed = vehicleSpeed;
-    float dV = dT * vehicleAcceleration();
+    float dV = VE::dT * vehicleAcceleration();
     vehicleAcc = vehicleAcceleration();
     vehicleSpeed += dV;
     if(lastVehicleSpeed * vehicleSpeed < 0){
@@ -248,18 +230,18 @@ void Emulator::shiftScheduler(){
 float Emulator::engineRPMChangeInNeutral(){
     float engineRPMChange;
     if(gasPedalPosition == 0){
-        engineRPMChange = - 8 * neutralRatio;
+        engineRPMChange = - 8 * VE::neutralRatio;
     } else{
         if (engineRPM <= 2020){
-            engineRPMChange = 20.4 * neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 20.4 * VE::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 2020 && engineRPM <= 2990){
-            engineRPMChange = 23.8 * neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 23.8 * VE::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 2990 && engineRPM <= 3500){
-            engineRPMChange = 26.1 * neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 26.1 * VE::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 3500 && engineRPM <= 5000){
-            engineRPMChange = 26.4 * neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 26.4 * VE::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 5000) {//6500){
-            engineRPMChange = 24.1 * neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 24.1 * VE::neutralRatio * gasPedalPosition / 100;
         }
     }
     return engineRPMChange;
@@ -267,14 +249,14 @@ float Emulator::engineRPMChangeInNeutral(){
 
 void Emulator::calculateEngineRPM(){
     if(gearPosition == D || gearPosition == R){
-        this->engineRPM = 30 * fabs(vehicleSpeed) / dynamicWheelRadius * gearRatios[gearIndex] *finalDriveRatio / 3.14;
+        this->engineRPM = 30 * fabs(vehicleSpeed) / VE::dynamicWheelRadius * VE::gearRatios[gearIndex] *VE::finalDriveRatio / 3.14;
     } else {
         this->engineRPM += engineRPMChangeInNeutral();
     }
-    if(engineRPM < engineIdlingRPM - 200){
-        this->engineRPM = engineIdlingRPM;
-    }else if(engineRPM > engineMaxRPM){
-        this->engineRPM = engineMaxRPM - 750;
+    if(engineRPM < VE::engineIdlingRPM - 200){
+        this->engineRPM = VE::engineIdlingRPM;
+    }else if(engineRPM > VE::engineMaxRPM){
+        this->engineRPM = VE::engineMaxRPM - 750;
     }
 }
 
