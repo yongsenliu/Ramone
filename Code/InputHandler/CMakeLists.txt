@@ -8,10 +8,10 @@ include_directories(../libSocketCan)
 add_executable(InputHandler 
 		InputHandler.cpp
 		./src/InputHandlerSource.cpp
-		../libSocketCan/src/socketcan.cpp)
+		)
 
 target_include_directories(InputHandler PUBLIC 
 				./libSocketCan/include
 				./InputHandler/include)
 
-target_link_libraries(InputHandler PUBLIC curses)
+target_link_libraries(InputHandler PUBLIC SocketCan curses)
