@@ -180,10 +180,8 @@ float Emulator::tractionForce(){
 
     if (gearPosition == D) {
         return calculateTorque() * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
-    } else if (gearPosition = R) {
+    } else if (gearPosition == R) {
         return - calculateTorque() * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
-    } else if (gearPosition == N) {
-        return 0;
     } else {
         return 0;
     }
@@ -196,6 +194,7 @@ float Emulator::aerodynamicForce(){
 float Emulator::vehicleAcceleration() {
     float force = tractionForce();
     float brkForce = 0;
+    float sumForce = 0;
     if (gasPedalPosition == 0) {
         brkForce = engineBreakForce;
     }
@@ -204,11 +203,13 @@ float Emulator::vehicleAcceleration() {
         brkForce = engineBreakForce + 5000;
     }
 
-    float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
+    //float sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
     if (vehicleSpeed == 0) {
         sumForce = force;
     } else if (vehicleSpeed < 0) {
-        
+        sumForce = force + roadLoadForce + aerodynamicForce() + brkForce;
+    } else if (vehicleSpeed > 0) {
+        sumForce = force - roadLoadForce - aerodynamicForce() - brkForce;
     }
 
     if ((gasPedalPosition == 0) && ((engineRPM < 1050) && (engineRPM > 950))) {
