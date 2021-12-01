@@ -18,6 +18,9 @@ namespace VE {
         const float vehicleFrontalArea = 2.42; // frontal area [m2]
         const float airDensity = 1.202; // air density [kg/m3]
         const float spdConvert = 2.23694;// parameter for converting m/s to mile/s
+        const int fakeGaugeData1 = 100;
+        const int fakeGaugeData2 = 200;
+        const int fakeGaugeData3 = 50;
 
         //Road:
         const float roadLoadForce = 205.892; // total road load force (resistance due to slope, friction) [Nm]
@@ -32,6 +35,8 @@ namespace VE {
         //Transmission constants:
         const float gearRatios[8] = {4.71, 3.14, 2.11, 1.67, 1.29, 1.00, 0.84, 0.67}; // gearbox gear ratios
         const float neutralRatio = 4.5;
+        const int gearShiftPointLowRPM = 3000;
+        const int gearShiftPointHighRPM = 5000;
         
         //Powertrain constants
         const float finalDriveRatio = 3.31; // final drive ratio (differential)
