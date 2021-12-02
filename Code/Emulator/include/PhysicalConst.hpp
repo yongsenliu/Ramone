@@ -1,9 +1,10 @@
-#ifndef VEHICLEPARAMETERS_HPP
-#define VEHICLEPARAMETERS_HPP
+#ifndef PHYSICALCONST_HPP
+#define PHYSICALCONST_HPP
 
-namespace VE {
-        /*Vehicle constants*/
+//Physical constants
+namespace PHY {
 
+/*Vehicle constants*/
         //Tires:
         const float tireW = 0.295; // tire width [m]
         const float tireD = 20 * 0.0254; // rim diameter [m]
@@ -23,9 +24,6 @@ namespace VE {
         const int fakeGaugeData3 = 50;
         const int maxEngineIgnitionOffSpeed = 10; //[m/s]
 
-        //Road:
-        const float roadLoadForce = 205.892; // total road load force (resistance due to slope, friction) [Nm]
-        
         //Engine constants:
         const int tqFullLoad[6] = {306, 385, 439, 450, 450, 367}; // engine torque curve at full load [Nm]
         const int NtqFullLoad[6] = {1000, 2020, 2990, 3500, 5000, 6500}; // engine speed axis [rpm]
@@ -43,8 +41,13 @@ namespace VE {
         const float finalDriveRatio = 3.31; // final drive ratio (differential)
         const float drivelineEfficiency = 0.85; // driveline efficiency
         const int defaultBrakePedalForce = 7000; //[Nm]
+
+/*Environment constants*/
+        //Road:
+        const float roadLoadForce = 205.892; // total road load force (resistance due to slope, friction) [Nm]
+
         
-        //Simulation constants:
+/*Simulation constants*/
         const float dT = 0.01; // sample time [s] 
         const int egineCanID = 0x123;
         const int gearboxCanID = 0x312;
