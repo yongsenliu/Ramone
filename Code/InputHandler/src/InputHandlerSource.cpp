@@ -22,9 +22,9 @@ void printInstructions(){
 
 void UserInput::PrintSensorValues(){
     std::cout << "The position of the acceleration pedal is: " << this->canData.accPedalPos << std::endl << "\r";
-    std::cout << "The position of the gear lever is: " << (int)this->canData.gearLeverPos << "\n\r";
+    std::cout << "The position of the gear lever is: " << static_cast<int>(this->canData.gearLeverPos) << "\n\r";
     std::cout << "Breaking status is: " << this->canData.brkPedal << "\n\r";
-    std::cout << "Ignition key status is: " << (int)this->canData.ignition << "\n\r";
+    std::cout << "Ignition key status is: " << static_cast<int>(this->canData.ignition) << "\n\r";
 }
 
 void UserInput::Sensing(int input){
@@ -82,7 +82,7 @@ bool UserInput::isTerminated() {
 }
 
 void inputAbstractionToCan(int (&a)[5], UserInputCanData values){
-    a[0] = values.accPedalPos;
+    a[0] = static_cast<int>(values.accPedalPos);
     a[1] = static_cast<int>(values.gearLeverPos);
     a[2] = static_cast<int>(values.ignition);
     a[3] = values.brkPedal;

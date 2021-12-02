@@ -24,4 +24,5 @@ target_link_libraries(testEmulator pthread SocketCan gtest_main)
 # add_custom_command(TARGET testEmulator POST_BUILD COMMAND /bin/sh ../../setvcan.sh)
 # gtest_discover_tests(testEmulator)
 
+
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
