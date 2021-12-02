@@ -18,7 +18,7 @@ private:
 //    void die();
 
 private:
-    size_t Counter;
+    size_t Counter = 0;
     CANOpener CANReader;
     ClusterUpdater InstrumentCluster;
 
