@@ -1,4 +1,4 @@
-#include "./include/emulator.hpp"
+#include "emulator.hpp"
 
 int main() {
     Emulator myEmulator;

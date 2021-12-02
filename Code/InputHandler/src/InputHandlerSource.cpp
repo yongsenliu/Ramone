@@ -1,4 +1,4 @@
-#include "../include/InputHandler.hpp"
+#include "InputHandler.hpp"
 
 void initializeWindowAndCan(scpp::SocketCan &socketCan){
     initscr();

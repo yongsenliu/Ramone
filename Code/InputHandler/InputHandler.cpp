@@ -1,4 +1,4 @@
-#include "include/InputHandler.hpp"
+#include "InputHandler.hpp"
 
 int main(/*int argc, char ** argv*/){
     scpp::SocketCan socketCan;

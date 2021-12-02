@@ -1,51 +1,12 @@
  set(CMAKE_INCLUDE_CURRENT_DIR ON)
 cmake_minimum_required(VERSION 3.5.1)
 project(Ramone)
-# GoogleTest requires at least C++11
+
 set(CMAKE_CXX_STANDARD 11)
 
-#add_executable(Emulator 
-#		main.cpp
-#		./src/EmulatorSource.cpp
-#		../libSocketCan/src/socketcan.cpp
-#		)
-#
-#target_include_directories(Emulator PUBLIC 
-#				./libSocketCan/include
-#				./Emulator/include)
-
-# target_link_libraries(Emulator PUBLIC pthread)
-
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/e2239ee6043f73722e7aa812a459f54a28552929.zip
-)
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-
-enable_testing()
+include_directories(include)
 
 add_executable(Emulator ./Emulator.cpp ./src/EmulatorSource.cpp)
-add_executable(testEmulator ./testEmulator.cpp ./src/EmulatorSource.cpp ../libSocketCan/src/socketcan.cpp)
-target_link_libraries(
-  Emulator
-  pthread
-  SocketCan
-)
+target_link_libraries(Emulator pthread SocketCan)
 
-target_link_libraries(
-  testEmulator
-  pthread
-  gtest_main
-)
-
-include(GoogleTest)
-add_custom_command(TARGET testEmulator
-        POST_BUILD
-        COMMAND /bin/sh ./../../../setvcan.sh
-        )
-gtest_discover_tests(testEmulator)
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
-
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef ")
