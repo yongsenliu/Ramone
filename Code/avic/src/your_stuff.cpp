@@ -67,12 +67,13 @@ bool yourStuff::run() {
     CANOpener::ReadStatus status = this->CANReader.read(&frame);
     /*while*/if (status == CANOpener::ReadStatus::OK) {
         this->YouHaveJustRecievedACANFrame(&frame);
+        this->Counter = 0;
     }
     if (status == CANOpener::ReadStatus::ERROR) ret = false;
     else if (status == CANOpener::ReadStatus::NAVAL ||
              status == CANOpener::ReadStatus::ENDOF) this->Counter++;
-    else   this->Counter = 0;
-    if (this->Counter > 500000000000000) ret = false;
+    //else   this->Counter = 0;
+    if (this->Counter > 500) ret = false;
     return ret;
 }
 
