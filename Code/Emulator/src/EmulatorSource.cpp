@@ -1,4 +1,4 @@
-#include "../include/emulator.hpp"
+#include "emulator.hpp"
 
 Emulator::Emulator(){
     if (socketCanReader.open("vcan0") != scpp::STATUS_OK) {
