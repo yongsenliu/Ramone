@@ -4,7 +4,7 @@
 #include <iostream>
 #include <ncurses.h>
 #include <array> 
-#include "../../libSocketCan/include/socketcan.hpp"
+#include "socketcan.hpp"
 #include "NcKeyBindings.hpp"
 
 enum class GearLever{P,D,N,R};
