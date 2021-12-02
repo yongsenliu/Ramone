@@ -19,7 +19,7 @@ void Emulator::setIgnition() {
         isIgnitionOn = true;
     }
 
-    if ((vehicleSpeed < VE::maxEngineIgnitionOffSpeed) && (ignition == ignition_t::OFF)) {
+    if ((vehicleSpeed < PHY::maxEngineIgnitionOffSpeed) && (ignition == ignition_t::OFF)) {
         isIgnitionOn = false;
     }
 
@@ -30,7 +30,7 @@ bool Emulator::ignitionOn() {
 }
 
 int Emulator::rasterTimeInMiliSeconds(){
-    return VE::dT * 1000;
+    return PHY::dT * 1000;
 }
 
 void Emulator::canReader(){
@@ -62,12 +62,12 @@ void Emulator::canSender() {
     engineCanData[0] = int(engineRPM) % 256;
     engineCanData[1] = int(engineRPM) / 256;
     
-    engineCanData[2] = int(fabs(vehicleSpeed) * VE::spdConvert) % 256;
-    engineCanData[3] = int(fabs(vehicleSpeed) * VE::spdConvert) / 256;
+    engineCanData[2] = int(fabs(vehicleSpeed) * PHY::spdConvert) % 256;
+    engineCanData[3] = int(fabs(vehicleSpeed) * PHY::spdConvert) / 256;
 
     engineCanData[4] = 0xff;
     engineCanData[5] = 0xff;
-    socketCanWriter.send(engineCanData, 6, VE::egineCanID);
+    socketCanWriter.send(engineCanData, 6, PHY::egineCanID);
 
     int gearboxCanData[2];
     Gearbx_t g;
@@ -87,16 +87,14 @@ void Emulator::canSender() {
     gearboxCanData[0] = g.Data[0];
     gearboxCanData[1] = g.Data[1];
 
-    socketCanWriter.send(gearboxCanData, 2, VE::gearboxCanID);
+    socketCanWriter.send(gearboxCanData, 2, PHY::gearboxCanID);
 
     int gaugeCanData[3];
-    gaugeCanData[0] = VE::fakeGaugeData1;
-    gaugeCanData[1] = VE::fakeGaugeData2;
-    gaugeCanData[2] = VE::fakeGaugeData3;
+    gaugeCanData[0] = PHY::fakeGaugeData1;
+    gaugeCanData[1] = PHY::fakeGaugeData2;
+    gaugeCanData[2] = PHY::fakeGaugeData3;
 
-    socketCanWriter.send(gaugeCanData, 3, VE::gaugeCanID);
-
-
+    socketCanWriter.send(gaugeCanData, 3, PHY::gaugeCanID);
 }
 
 void Emulator::canSender_reset() {
@@ -105,17 +103,17 @@ void Emulator::canSender_reset() {
     engineCanDataReset[1] = 0;
     engineCanDataReset[2] = 0;
     engineCanDataReset[3] = 0;
-    socketCanWriter.send(engineCanDataReset, 4, VE::egineCanID);
+    socketCanWriter.send(engineCanDataReset, 4, PHY::egineCanID);
     
     int gearboxCanDataReset[2];
     gearboxCanDataReset[0] = 0x00;
     gearboxCanDataReset[1] = 0x00;
-    socketCanWriter.send(gearboxCanDataReset, 2, VE::gearboxCanID);
+    socketCanWriter.send(gearboxCanDataReset, 2, PHY::gearboxCanID);
 
     int gaugeCanDataReset[1];
     gaugeCanDataReset[0] = 0;
     //gaugeCanData[1] = 0;
-    socketCanWriter.send(gaugeCanDataReset, 1, VE::gaugeCanID);
+    socketCanWriter.send(gaugeCanDataReset, 1, PHY::gaugeCanID);
 
     // int iconsCanDataReset[2];
     // iconsCanDataReset[0] = 0x00;
@@ -154,25 +152,19 @@ float Emulator::calculateTorque(){
 }
 
 float Emulator::tractionForce(){
-    // if(gearPosition == D || gearPosition == R){
 
-    //     return calculateTorque() * gearRatios[gearIndex] *finalDriveRatio * drivelineEfficiency / dynamicWheelRadius;
-    
-    // } else {
-    //     return 0;
-    // }
-
+    float force = calculateTorque() * PHY::gearRatios[gearIndex] *PHY::finalDriveRatio * PHY::drivelineEfficiency / PHY::dynamicWheelRadius;
     if (gearPosition == gearPosition_t::D) {
-        return calculateTorque() * VE::gearRatios[gearIndex] *VE::finalDriveRatio * VE::drivelineEfficiency / VE::dynamicWheelRadius;
+        return force;
     } else if (gearPosition == gearPosition_t::R) {
-        return - calculateTorque() * VE::gearRatios[gearIndex] *VE::finalDriveRatio * VE::drivelineEfficiency / VE::dynamicWheelRadius;
+        return - force;
     } else {
         return 0;
     }
 }
 
 float Emulator::aerodynamicForce(){
-    return VE::airDensity * VE::dragCoefficient * VE::vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
+    return PHY::airDensity * PHY::dragCoefficient * PHY::vehicleFrontalArea * vehicleSpeed * vehicleSpeed / 2;
 }
 
 float Emulator::vehicleAcceleration() {
@@ -180,22 +172,22 @@ float Emulator::vehicleAcceleration() {
     float brkForce = 0;
     float sumForce = 0;
     if (gasPedalPosition == 0) {
-        brkForce = VE::engineBrakeForce;
+        brkForce = PHY::engineBrakeForce;
     }
 
     if (brkPedal == 1) {
-        brkForce = VE::engineBrakeForce + VE::defaultBrakePedalForce;
+        brkForce = PHY::engineBrakeForce + PHY::defaultBrakePedalForce;
     }
 
     if (vehicleSpeed == 0) {
         sumForce = force;
     } else if (vehicleSpeed < 0) {
-        sumForce = force + VE::roadLoadForce + aerodynamicForce() + brkForce;
+        sumForce = force + PHY::roadLoadForce + aerodynamicForce() + brkForce;
     } else if (vehicleSpeed > 0) {
-        sumForce = force - VE::roadLoadForce - aerodynamicForce() - brkForce;
+        sumForce = force - PHY::roadLoadForce - aerodynamicForce() - brkForce;
     }
 
-    if ((gasPedalPosition == 0) && ((engineRPM < (VE::engineIdlingRPM + 50)) && (engineRPM > (VE::engineIdlingRPM - 50)))) {
+    if ((gasPedalPosition == 0) && ((engineRPM < (PHY::engineIdlingRPM + 50)) && (engineRPM > (PHY::engineIdlingRPM - 50)))) {
         sumForce = 0;
     }
 
@@ -203,12 +195,12 @@ float Emulator::vehicleAcceleration() {
     //     sumForce = - sumForce;
     // }
 
-    return  sumForce / VE::vehicleMass;
+    return  sumForce / PHY::vehicleMass;
 }
 
 void Emulator::setVehicleSpeed(){
     float lastVehicleSpeed = vehicleSpeed;
-    float dV = VE::dT * vehicleAcceleration();
+    float dV = PHY::dT * vehicleAcceleration();
     vehicleAcc = vehicleAcceleration();
     vehicleSpeed += dV;
     if(lastVehicleSpeed * vehicleSpeed < 0){
@@ -218,9 +210,9 @@ void Emulator::setVehicleSpeed(){
 
 void Emulator::shiftScheduler(){
     if(gearPosition == gearPosition_t::D){
-        if (engineRPM >= VE::gearShiftPointHighRPM && gearIndex < 7){
+        if (engineRPM >= PHY::gearShiftPointHighRPM && gearIndex < 7){
             gearIndex = gearIndex +1;
-        } else if (engineRPM <= VE::gearShiftPointLowRPM && gearIndex > 0){
+        } else if (engineRPM <= PHY::gearShiftPointLowRPM && gearIndex > 0){
             gearIndex = gearIndex - 1;
         }
     } else if(gearPosition == gearPosition_t::R){
@@ -231,18 +223,18 @@ void Emulator::shiftScheduler(){
 float Emulator::engineRPMChangeInNeutral(){
     float engineRPMChange;
     if(gasPedalPosition == 0){
-        engineRPMChange = - 8 * VE::neutralRatio;
+        engineRPMChange = - 8 * PHY::neutralRatio;
     } else{
         if (engineRPM <= 2020){
-            engineRPMChange = 20.4 * VE::neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 20.4 * PHY::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 2020 && engineRPM <= 2990){
-            engineRPMChange = 23.8 * VE::neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 23.8 * PHY::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 2990 && engineRPM <= 3500){
-            engineRPMChange = 26.1 * VE::neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 26.1 * PHY::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 3500 && engineRPM <= 5000){
-            engineRPMChange = 26.4 * VE::neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 26.4 * PHY::neutralRatio * gasPedalPosition / 100;
         }else if(engineRPM > 5000) {//6500){
-            engineRPMChange = 24.1 * VE::neutralRatio * gasPedalPosition / 100;
+            engineRPMChange = 24.1 * PHY::neutralRatio * gasPedalPosition / 100;
         }
     }
     return engineRPMChange;
@@ -250,14 +242,14 @@ float Emulator::engineRPMChangeInNeutral(){
 
 void Emulator::calculateEngineRPM(){
     if(gearPosition == gearPosition_t::D || gearPosition == gearPosition_t::R){
-        this->engineRPM = 30 * fabs(vehicleSpeed) / VE::dynamicWheelRadius * VE::gearRatios[gearIndex] *VE::finalDriveRatio / 3.14;
+        this->engineRPM = 30 * fabs(vehicleSpeed) / PHY::dynamicWheelRadius * PHY::gearRatios[gearIndex] *PHY::finalDriveRatio / 3.14;
     } else {
         this->engineRPM += engineRPMChangeInNeutral();
     }
-    if(engineRPM < VE::engineIdlingRPM - 200){
-        this->engineRPM = VE::engineIdlingRPM;
-    }else if(engineRPM > VE::engineMaxRPM){
-        this->engineRPM = VE::engineMaxRPM - 750;
+    if(engineRPM < PHY::engineIdlingRPM - 200){
+        this->engineRPM = PHY::engineIdlingRPM;
+    }else if(engineRPM > PHY::engineMaxRPM){
+        this->engineRPM = PHY::engineMaxRPM - 750;
     }
 }
 
