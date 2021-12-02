@@ -9,7 +9,7 @@
 #include <bitset>
 #include <chrono>
 #include "../../libSocketCan/include/socketcan.hpp"
-#include "VehicleParameters.hpp"
+#include "PhysicalConst.hpp"
 
 enum class gearPosition_t {P,D,N,R};
 
@@ -58,7 +58,7 @@ class Emulator{
     private:
     /*Variables*/
         int gasPedalPosition = 0;
-        float engineRPM = VE::engineIdlingRPM;
+        float engineRPM = PHY::engineIdlingRPM;
         gearPosition_t gearPosition = gearPosition_t::N;
         ignition_t ignition = ignition_t::OFF;
         mutable std::mutex mu;
