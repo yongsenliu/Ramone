@@ -1,0 +1,115 @@
+<mxfile host="65bd71144e">
+    <diagram id="GP0YNp44nlQtGhltSVO9" name="Page-1">
+        <mxGraphModel dx="568" dy="1801" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Class Emulator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="-1040" width="220" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Private:&#10;gasPedalPosition&#10;engineRPM&#10;gearPosition&#10;ignition&#10;gearindex&#10;vehicleSpeed&#10;vehicleAcc&#10;brkPedal&#10;isIgnitionOn&#10;checkCnt&#10;isTerminated&#10;&#10;std::mutex mu&#10;socketCanReader&#10;socketCanWriter&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
+                    <mxGeometry y="26" width="220" height="244" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="2" vertex="1">
+                    <mxGeometry y="270" width="220" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Public:&#10;canReader()&#10;canSender()&#10;canSender_reset()&#10;clusterCheck()&#10;setIgnition()&#10;ignitionOn()&#10;rasterTimeInMiliSeconds()&#10;calculateTorque()&#10;tractionForce()&#10;aerodynamicForce()&#10;vehicleAcceleration()&#10;setVehicleSpeed()&#10;shiftScheduler()&#10;calculateEngineRPM()&#10;engineChangeInNeutral()&#10;run()&#10;print()&#10;terminator()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
+                    <mxGeometry y="278" width="220" height="282" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="typedef union _gearbox (Gearbx_t)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="-730" width="250" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="struct _bits;&#10;uint8_t Data[1];" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="10" vertex="1">
+                    <mxGeometry y="26" width="250" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="struct _bits (Bits)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="-630" width="250" height="88" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="unsigned char GEAR_P:3;&#10;unsigned char GEAR_N:3;&#10;unsigned chr RESERVED_PADDING:2;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="26" vertex="1">
+                    <mxGeometry y="26" width="250" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="26" vertex="1">
+                    <mxGeometry y="80" width="250" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="typedef _engine (Engine_t)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="-880" width="230" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Engine_t&#10;unsigned char accPedalPos;&#10;unsigned char gearboxPos;&#10;unsigned char ignition;&#10;unsigned char brkPedalPos;&#10;unsigned char is Terminated;&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="31" vertex="1">
+                    <mxGeometry y="26" width="230" height="94" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="Enum class gearPosition_t" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="-960" width="200" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="P, D. N, R" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="36" vertex="1">
+                    <mxGeometry y="26" width="200" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="Enum class ignition_t" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="-1040" width="200" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="OFF, ON" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="43" vertex="1">
+                    <mxGeometry y="26" width="200" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="namespace PHY (physical constants of vehicle)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="-360" width="300" height="718" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="Tires:&#10;tireW&#10;tireD&#10;tireMiua&#10;tireLoad&#10;dynamicWheelRadius&#10;&#10;Vehicle:&#10;vehicleMass&#10;g&#10;dragCoefficient&#10;vehicleFrontalArea&#10;airDensity&#10;spdConvert&#10;fakeGaugeData1&#10;fakeGaugeData2&#10;fakeGaugeData3&#10;maxEngineIgnitionoffSpeed&#10;&#10;Engine:&#10;tqFullLoad&#10;NtqFullLoad&#10;engineIdlingRPM&#10;engineMaxRPM&#10;engineBrakeForce&#10;&#10;Transmission:&#10;gearRatios&#10;neutralRatio&#10;gearShiftPointLowRPM&#10;gearShiftPointHighRPM&#10;&#10;Powetrain:&#10;finalDriveRatio&#10;driveLineEfficiency&#10;defaultBrakePedalForce&#10;&#10;Environment:&#10;&#10;Raod:&#10;roadLoadForce&#10;&#10;Simulation:&#10;dT (sample time)&#10;egineCanID&#10;gearboxCanID&#10;gaugeCanID&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="53">
+                    <mxGeometry y="26" width="300" height="684" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="53">
+                    <mxGeometry y="710" width="300" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;InputHandler.hpp&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="460" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="&lt;b style=&quot;font-size: 18px&quot;&gt;emulator.hpp&amp;nbsp;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="-1080" width="130" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="Class UserInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="530" width="220" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="Private:&#10;accPedalMax&#10;accPedalMin&#10;accPedalChange&#10;canData&#10;&#10;Public:&#10;ValuesToCan&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="59">
+                    <mxGeometry y="26" width="220" height="144" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="59">
+                    <mxGeometry y="170" width="220" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="Public:&#10;Sensing()&#10;PrintSensorValues()&#10;ValuesToCan()&#10;isTerminated()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="59">
+                    <mxGeometry y="178" width="220" height="92" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;NcKeyBindings.hpp&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="870" width="190" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="namespace NC" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="930" width="220" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="P_KEY&#10;D_KEY&#10;N_KEY&#10;R_KEY&#10;S_KEY&#10;B_KEY&#10;ESC_KEY" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="64">
+                    <mxGeometry y="26" width="220" height="124" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;PhysicalConst.hpp&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="5" y="-410" width="180" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="Enum class ignition_t" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="524" width="200" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="OFF, ON" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="69">
+                    <mxGeometry y="26" width="200" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="Enum class gearPosition_t" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="600" width="200" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="P, D. N, R" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="71">
+                    <mxGeometry y="26" width="200" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="struct UserInputCanData" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="680" width="250" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="accPedalPos&#10;gearLeverPos&#10;ignition&#10;brkPedal&#10;shutdown" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="73">
+                    <mxGeometry y="26" width="250" height="84" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="initializeWindowAndCan()&lt;br&gt;inputAbstractionToCan()&lt;br&gt;printInstructions()" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="575" y="565" width="150" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
