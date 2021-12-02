@@ -184,7 +184,11 @@ float Emulator::vehicleAcceleration() {
     } else if (vehicleSpeed < 0) {
         sumForce = force + PHY::roadLoadForce + aerodynamicForce() + brkForce;
     } else if (vehicleSpeed > 0) {
-        sumForce = force - PHY::roadLoadForce - aerodynamicForce() - brkForce;
+        if (gearPosition == gearPosition_t::D) {
+            sumForce = force - PHY::roadLoadForce - aerodynamicForce() - brkForce;
+        } else if (gearPosition == gearPosition_t::R) {
+            sumForce = - PHY::engineBrakeForce - PHY::defaultBrakePedalForce;
+        }
     }
 
     if ((gasPedalPosition == 0) && ((engineRPM < (PHY::engineIdlingRPM + 50)) && (engineRPM > (PHY::engineIdlingRPM - 50)))) {
