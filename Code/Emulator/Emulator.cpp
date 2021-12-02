@@ -20,6 +20,6 @@ int main() {
     }
 
     t1.join();
-    std::cout << "The emulator is now terminated!";
+    std::cout << "The emulator is now terminated!" << std::endl;
     return 0;
 }
