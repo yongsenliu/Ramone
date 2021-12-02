@@ -105,8 +105,8 @@ namespace scpp
 
         }
 
-        //const int timestamping_flags = (SOF_TIMESTAMPING_SOFTWARE | \
-        //    SOF_TIMESTAMPING_RX_SOFTWARE | \
+        //const int timestamping_flags = (SOF_TIMESTAMPING_SOFTWARE |
+        //    SOF_TIMESTAMPING_RX_SOFTWARE |
         //    SOF_TIMESTAMPING_RAW_HARDWARE);
 
         //if (setsockopt(m_socket, SOL_SOCKET, SO_TIMESTAMPING,
