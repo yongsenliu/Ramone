@@ -2,12 +2,14 @@
 
 Emulator::Emulator(){
     if (socketCanReader.open("vcan0") != scpp::STATUS_OK) {
+        std::lock_guard<std::mutex> lockout(muCout);
         std::cout << "Cannot open vcan0." << std::endl;
         std::cout << "Check whether the vcan0 interface is up!" << std::endl;
         exit (-1);
     }
 
     if (socketCanWriter.open("vcan1") != scpp::STATUS_OK) {
+        std::lock_guard<std::mutex> lockout(muCout);
         std::cout << "Cannot open vcan1." << std::endl;
         std::cout << "Check whether the vcan1 interface is up!" << std::endl;
         exit (-1);
@@ -37,13 +39,13 @@ void Emulator::canReader(){
     while (!terminator()) {
         scpp::CanFrame fr;
         if (socketCanReader.read(fr) == scpp::STATUS_OK) {
-            printf("len %d byte, id: %d, data: %02x %02x %02x %02x %02x \n", fr.len, fr.id, 
-                fr.data[0], fr.data[1], fr.data[2], fr.data[3], fr.data[4]);
+            std::lock_guard<std::mutex> lockout(muCout);
+            //std::cout <<  fr.len <<  fr.id << fr.data[0]<<  fr.data[1] << std::endl;
+            //     fr.data[0], fr.data[1], fr.data[2], fr.data[3], fr.data[4])
+             printf("len %d byte, id: %d, data: %02x %02x %02x %02x %02x \n", fr.len, fr.id, 
+                 fr.data[0], fr.data[1], fr.data[2], fr.data[3], fr.data[4]);
 
-            std::lock_guard<std::mutex> lock(mu);
-
-
-
+            std::lock_guard<std::mutex> lock(muSrc);
             this->gasPedalPosition = int(fr.data[0]);
             this->gearPosition = gearPosition_t(fr.data[1]);   
             this->ignition = ignition_t(fr.data[2]);
@@ -56,8 +58,8 @@ void Emulator::canReader(){
 }
 
 void Emulator::canSender() {
-    int engineCanData[5];
-    const std::lock_guard<std::mutex> lock(mu);
+    int engineCanData[5];// = {0, 0, 0, 0, 0};
+    std::lock_guard<std::mutex> lock(muSrc);
     
     engineCanData[0] = int(engineRPM) % 256;
     engineCanData[1] = int(engineRPM) / 256;
@@ -114,17 +116,6 @@ void Emulator::canSender_reset() {
     gaugeCanDataReset[0] = 0;
     //gaugeCanData[1] = 0;
     socketCanWriter.send(gaugeCanDataReset, 1, PHY::gaugeCanID);
-
-    // int iconsCanDataReset[2];
-    // iconsCanDataReset[0] = 0x00;
-    // iconsCanDataReset[1] = 0x00;
-    // // iconsCanDataReset[2] = 0x00;
-    // socketCanWriter.send(gaugeCanDataReset, 2, 0x213);
-
-    // int userinCanDataReset[2];
-    // userinCanDataReset[0] = 0x00;
-    // userinCanDataReset[1] = 0x00;
-    // socketCanWriter.send(userinCanDataReset, 2, 0x111);
 
 }
 
@@ -195,10 +186,6 @@ float Emulator::vehicleAcceleration() {
         sumForce = 0;
     }
 
-    // if(gearPosition == R){
-    //     sumForce = - sumForce;
-    // }
-
     return  sumForce / PHY::vehicleMass;
 }
 
@@ -258,7 +245,7 @@ void Emulator::calculateEngineRPM(){
 }
 
 void Emulator::run() {
-    const std::lock_guard<std::mutex> lock(mu);
+    std::lock_guard<std::mutex> lock(muSrc);
     calculateTorque();
     setVehicleSpeed();
     calculateEngineRPM();
@@ -266,7 +253,7 @@ void Emulator::run() {
 }
 
 void Emulator::print() {
-    const std::lock_guard<std::mutex> lock(mu);
+    std::lock_guard<std::mutex> lockout(muCout);
     std::cout << "Terminated?: " << isTerminated << ", Ignition: " << isIgnitionOn << ", acc%: " << gasPedalPosition << ", brk: " << brkPedal << ", Acceleration: " << vehicleAcc <<  ", gear index: " << gearIndex << ", engine RPM: " << engineRPM << ", vehicle speed: " <<vehicleSpeed << std::endl;
 }
 
