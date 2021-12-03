@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5.1)
 project(Ramone)
 
 include_directories(../Code/InputHandler/include)
+include_directories(../Code/Emulator/include)
 
 include(FetchContent)
 FetchContent_Declare(
