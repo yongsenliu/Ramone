@@ -54,6 +54,7 @@ class Emulator{
         void run();
         void print();
         bool terminator();
+        mutable std::mutex muCout; //mutex for std::cout and print function
 
     private:
     /*Variables*/
@@ -61,15 +62,15 @@ class Emulator{
         float engineRPM = PHY::engineIdlingRPM;
         gearPosition_t gearPosition = gearPosition_t::N;
         ignition_t ignition = ignition_t::OFF;
-        mutable std::mutex mu;
+      
         int gearIndex = 0;
         float vehicleSpeed = 0;
         float vehicleAcc = 0;
         int brkPedal = 0;
         bool isIgnitionOn = false;
         int checkCnt = 0;
-
         bool isTerminated = false;
+        mutable std::mutex muSrc; //mutext for class members
 
     /*CAN communication*/
         scpp::SocketCan socketCanReader;

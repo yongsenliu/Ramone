@@ -36,7 +36,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="12" value="Set engine output&lt;br&gt;&amp;nbsp;torque as 0" style="html=1;" vertex="1" parent="1">
-                    <mxGeometry x="650" y="420" width="110" height="50" as="geometry"/>
+                    <mxGeometry x="660" y="390" width="110" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" value="D" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="16" target="19">
                     <mxGeometry relative="1" as="geometry"/>
